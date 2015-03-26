@@ -2,7 +2,7 @@ package com.romullogirardi.huntshark.model;
 
 import java.util.Calendar;
 
-public class Contest {
+public class Contest { 
 
 	//ATTRIBUTES
 	private int id;
