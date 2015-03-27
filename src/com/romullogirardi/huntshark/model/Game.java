@@ -6,14 +6,13 @@ public class Game {
 
 	//ATTRIBUTES
 	private ArrayList<Integer> numbers = new ArrayList<>();
-	private float investment = 0;
+	private int points = -1;
+	private float investment = Constants.GAME_PRIZE;
 	private float reward = 0;
 	
 	//CONSTRUCTOR
-	public Game(ArrayList<Integer> numbers, float investment, float reward) {
+	public Game(ArrayList<Integer> numbers) {
 		this.numbers = numbers;
-		this.investment = investment;
-		this.reward = reward;
 	}
 	
 	//GETTERS AND SETTERS
@@ -25,14 +24,18 @@ public class Game {
 		this.numbers = numbers;
 	}
 	
+	public int getPoints() {
+		return points;
+	}
+	
+	public void setPoints(int points) {
+		this.points = points;
+	}
+	
 	public float getInvestment() {
 		return investment;
 	}
 	
-	public void setInvestment(float investment) {
-		this.investment = investment;
-	}
-
 	public float getReward() {
 		return reward;
 	}

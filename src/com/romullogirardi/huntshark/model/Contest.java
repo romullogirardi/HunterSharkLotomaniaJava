@@ -1,5 +1,6 @@
 package com.romullogirardi.huntshark.model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Contest { 
@@ -15,10 +16,14 @@ public class Contest {
 	private float reward17points;
 	private float reward16points;
 	private float reward0points;
-	private Game recommendedGame = null;
-	private Game betGame = null;
+	private ArrayList<Game> recommendedGames = new ArrayList<>();
+	private float recommendedInvestment = 0;
+	private float recommendedReward = 0;
+	private ArrayList<Game> betGames = new ArrayList<>();
+	private float betInvestment = 0;
+	private float betReward = 0;
 	
-	//CONSTRUCTOR
+	//CONSTRUCTORS
 	public Contest(int id, Calendar date, String place, int[] numbers,
 			float reward20points, float reward19points, float reward18points,
 			float reward17points, float reward16points, float reward0points) {
@@ -32,6 +37,10 @@ public class Contest {
 		this.reward17points = reward17points;
 		this.reward16points = reward16points;
 		this.reward0points = reward0points;
+	}
+
+	public Contest(ArrayList<Game> recommendedGames) {
+		this.recommendedGames = recommendedGames;
 	}
 
 	//GETTERS AND SETTERS
@@ -115,19 +124,51 @@ public class Contest {
 		this.reward0points = reward0points;
 	}
 
-	public Game getRecommendedGame() {
-		return recommendedGame;
+	public ArrayList<Game> getRecommendedGames() {
+		return recommendedGames;
 	}
 
-	public void setRecommendedGame(Game recommendedGame) {
-		this.recommendedGame = recommendedGame;
+	public void setRecommendedGames(ArrayList<Game> recommendedGames) {
+		this.recommendedGames = recommendedGames;
 	}
 
-	public Game getBetGame() {
-		return betGame;
+	public float getRecommendedInvestment() {
+		return recommendedInvestment;
 	}
 
-	public void setBetGame(Game betGame) {
-		this.betGame = betGame;
+	public void setRecommendedInvestment(float recommendedInvestment) {
+		this.recommendedInvestment = recommendedInvestment;
+	}
+
+	public float getRecommendedReward() {
+		return recommendedReward;
+	}
+
+	public void setRecommendedReward(float recommendedReward) {
+		this.recommendedReward = recommendedReward;
+	}
+
+	public ArrayList<Game> getBetGames() {
+		return betGames;
+	}
+
+	public void setBetGames(ArrayList<Game> betGames) {
+		this.betGames = betGames;
+	}
+
+	public float getBetInvestment() {
+		return betInvestment;
+	}
+
+	public void setBetInvestment(float betInvestment) {
+		this.betInvestment = betInvestment;
+	}
+
+	public float getBetReward() {
+		return betReward;
+	}
+
+	public void setBetReward(float betReward) {
+		this.betReward = betReward;
 	}
 }
