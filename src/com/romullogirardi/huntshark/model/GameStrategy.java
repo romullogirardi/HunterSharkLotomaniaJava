@@ -22,6 +22,7 @@ public enum GameStrategy {
 	private int frequency17points;
 	private int frequency16points;
 	private int frequency0points;
+	private float pointsAverage = 0;
 	
 	//CONSTRUCTOR
 	private GameStrategy(String name) {
@@ -144,6 +145,14 @@ public enum GameStrategy {
 		this.frequency0points = frequency0points;
 	}
 
+	public float getPointsAverage() {
+		return pointsAverage;
+	}
+
+	public void setPointsAverage(float pointsAverage) {
+		this.pointsAverage = pointsAverage;
+	}
+
 	//METHOD TO GENERATE INDEXES
 	private ArrayList<Integer> setGameStrategyIndexes() {
 		
@@ -207,54 +216,14 @@ public enum GameStrategy {
 
 			@Override
 			public int compare(GameStrategy gameStrategy1, GameStrategy gameStrategy2) {
-				if(gameStrategy1.frequency20points > gameStrategy2.frequency20points) {
+				if(gameStrategy1.pointsAverage > gameStrategy2.pointsAverage) {
 					return -1;
 				}
-				if(gameStrategy1.frequency20points < gameStrategy2.frequency20points) {
+				if(gameStrategy1.pointsAverage < gameStrategy2.pointsAverage) {
 					return 1;
 				}
 				else {
-					if(gameStrategy1.frequency0points > gameStrategy2.frequency0points) {
-						return -1;
-					}
-					if(gameStrategy1.frequency0points < gameStrategy2.frequency0points) {
-						return 1;
-					}
-					else {
-						if(gameStrategy1.frequency19points > gameStrategy2.frequency19points) {
-							return -1;
-						}
-						if(gameStrategy1.frequency19points < gameStrategy2.frequency19points) {
-							return 1;
-						}
-						else {
-							if(gameStrategy1.frequency18points > gameStrategy2.frequency18points) {
-								return -1;
-							}
-							if(gameStrategy1.frequency18points < gameStrategy2.frequency18points) {
-								return 1;
-							}
-							else {
-								if(gameStrategy1.frequency17points > gameStrategy2.frequency17points) {
-									return -1;
-								}
-								if(gameStrategy1.frequency17points < gameStrategy2.frequency17points) {
-									return 1;
-								}
-								else {
-									if(gameStrategy1.frequency16points > gameStrategy2.frequency16points) {
-										return -1;
-									}
-									if(gameStrategy1.frequency16points < gameStrategy2.frequency16points) {
-										return 1;
-									}
-									else {
-										return 0;
-									}
-								}
-							}
-						}
-					}
+					return 0;
 				}
 			}
 		});
@@ -279,54 +248,14 @@ public enum GameStrategy {
 
 			@Override
 			public int compare(GameStrategy gameStrategy1, GameStrategy gameStrategy2) {
-				if(gameStrategy1.frequency20points > gameStrategy2.frequency20points) {
+				if(gameStrategy1.pointsAverage > gameStrategy2.pointsAverage) {
 					return -1;
 				}
-				if(gameStrategy1.frequency20points < gameStrategy2.frequency20points) {
+				if(gameStrategy1.pointsAverage < gameStrategy2.pointsAverage) {
 					return 1;
 				}
 				else {
-					if(gameStrategy1.frequency0points > gameStrategy2.frequency0points) {
-						return -1;
-					}
-					if(gameStrategy1.frequency0points < gameStrategy2.frequency0points) {
-						return 1;
-					}
-					else {
-						if(gameStrategy1.frequency19points > gameStrategy2.frequency19points) {
-							return -1;
-						}
-						if(gameStrategy1.frequency19points < gameStrategy2.frequency19points) {
-							return 1;
-						}
-						else {
-							if(gameStrategy1.frequency18points > gameStrategy2.frequency18points) {
-								return -1;
-							}
-							if(gameStrategy1.frequency18points < gameStrategy2.frequency18points) {
-								return 1;
-							}
-							else {
-								if(gameStrategy1.frequency17points > gameStrategy2.frequency17points) {
-									return -1;
-								}
-								if(gameStrategy1.frequency17points < gameStrategy2.frequency17points) {
-									return 1;
-								}
-								else {
-									if(gameStrategy1.frequency16points > gameStrategy2.frequency16points) {
-										return -1;
-									}
-									if(gameStrategy1.frequency16points < gameStrategy2.frequency16points) {
-										return 1;
-									}
-									else {
-										return 0;
-									}
-								}
-							}
-						}
-					}
+					return 0;
 				}
 			}
 		});
