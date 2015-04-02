@@ -3,7 +3,6 @@ package com.romullogirardi.huntshark.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.GregorianCalendar;
 import java.util.Vector;
 
 public class ContestManager {
@@ -262,10 +261,6 @@ public class ContestManager {
 
 	public void print() {
 		
-		for(NumberFrequency numberFrequency : numbersFrequency) {
-			System.out.println(numberFrequency.getNumber() + " => " + numberFrequency.getFrequency());
-		}
-		
 		System.out.println("\nJogo anterior: ");
 		if((contests.size() - 2) >= 0) {
 			for(Game game : contests.get(contests.size() - 2).getRecommendedGames()) {
@@ -274,6 +269,21 @@ public class ContestManager {
 		}
 		else {
 			System.out.println("Não há");
+		}
+
+		System.out.println("\nFrequência dos números");
+		for(NumberFrequency numberFrequency : numbersFrequency) {
+			System.out.println(numberFrequency.getNumber() + " => " + numberFrequency.getFrequency());
+		}
+		
+		System.out.println("\nComparativo de número de jogos");
+		for(int index = 0; index < gamesQuantityFrequency.length; index++) {
+			System.out.println(index + " => " + gamesQuantityFrequency[index]);
+		}
+
+		System.out.println("\nEstratégias");
+		for(GameStrategy gameStrategy : GameStrategy.getRecommendedStrategies(Constants.GAMES_QUANTITY_MAX)) {
+			System.out.println(gameStrategy.getName() + " => " + gameStrategy.getPointsAverage());
 		}
 
 		float totalInvestment = 0;
@@ -285,11 +295,6 @@ public class ContestManager {
 		System.out.println("\nInvestimento total: R$ " + totalInvestment);
 		System.out.println("Recompensa total: R$ " + totalReward);
 		System.out.println("Lucro total: R$ " + (totalReward - totalInvestment));
-		
-		System.out.println("\nEstratégias escolhidas: ");
-		for(GameStrategy gameStrategy : GameStrategy.getRecommendedStrategies(contests.lastElement().getRecommendedGames().size())) {
-			System.out.println(gameStrategy.getName() + " - Média de pontos: " + gameStrategy.getPointsAverage());
-		}
 		
 		System.out.println("\nPróximo jogo: ");
 		for(Game game : contests.lastElement().getRecommendedGames()) {
