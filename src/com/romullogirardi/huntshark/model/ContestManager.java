@@ -154,6 +154,12 @@ public class ContestManager {
 				}
 			}
 		}
+		
+		System.out.println("Índices sorteados");
+		for(int index : indexes) {
+			System.out.print(index + "\t");
+		}
+		System.out.println();
 
 		//Updating gameStrategy
 		Collections.sort(indexes);
@@ -197,7 +203,7 @@ public class ContestManager {
 						break;
 				}
 			}
-			gameStrategy.setPointsAverage((gameStrategy.getPointsAverage() + points)/(contests.size() - 1));
+			gameStrategy.setPointsAverage(((gameStrategy.getPointsAverage() * contests.size())  + points)/(contests.size() + 1));
 		}
 		
 		//Updating gamesQuantityFrequency
@@ -245,15 +251,18 @@ public class ContestManager {
 		}
 		
 		//Setting recommendedGames
+		System.out.println("Montagem do próximo jogo");
 		ArrayList<ArrayList<Integer>> recommendedIndexes = GameStrategy.getRecommendedIndexes(gamesQuantity);
 		for(ArrayList<Integer> indexes : recommendedIndexes) {
 			ArrayList<Integer> numbers = new ArrayList<>();
 			for(Integer index : indexes) {
+				System.out.println("Índice " + index + " => "  + numbersFrequency.get(index).getNumber());
 				numbers.add(numbersFrequency.get(index).getNumber());
 			}
 			Collections.sort(numbers);
 			recommendedGames.add(new Game(numbers));
 		}
+		System.out.println();
 		
 		//Adding a new contest with recommendedGames
 		contests.add(new Contest(recommendedGames));
