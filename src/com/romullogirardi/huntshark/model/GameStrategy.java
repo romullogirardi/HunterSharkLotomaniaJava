@@ -1,83 +1,54 @@
 package com.romullogirardi.huntshark.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
-public enum GameStrategy {
+public class GameStrategy {
 
-	FIRST_HALF("Primeira metade"),
-	LAST_HALF("Última metade"),
-	FIRST_THIRD_QUARTER("Primeiro e Terceiro quarto"),
-	FIRST_LAST_QUARTER("Primeiro e Último quarto"),
-	SECOND_THIRD_QUARTER("Segundo e Terceiro quarto"),
-	SECOND_LAST_QUARTER("Segundo e Último quarto");
-	
 	//ATTRIBUTTES
 	private String name;
 	private ArrayList<Integer> indexes;
-	private int frequency20points;
-	private int frequency19points;
-	private int frequency18points;
-	private int frequency17points;
-	private int frequency16points;
-	private int frequency0points;
+	private int frequency20points = 0;
+	private int frequency19points = 0;
+	private int frequency18points = 0;
+	private int frequency17points = 0;
+	private int frequency16points = 0;
+	private int frequency0points = 0;
 	private float pointsAverage = 0;
 	
 	//CONSTRUCTOR
-	private GameStrategy(String name) {
-		this.name = name;
-//		this.indexes = setGameStrategyIndexes();
+	public GameStrategy(int[] combinationIndexes) {
 		
-		ArrayList<Integer> indexes = new ArrayList<>();
-		if(name.equals("Primeira metade")) {
-			for(int index = 0; index < 50; index++) {
-					indexes.add(index);
-				}
+		//Setting indexes
+		int numberOfArrays = 100 / ContestManager.getInstance().N;
+		Integer[][] arrayIndexes = new Integer[numberOfArrays][];
+		Integer[] array = new Integer[100 / numberOfArrays];
+		for(int index = 0; index < 100; index++) {
+			
 		}
-		else if(name.equals("Última metade")) {
-			for(int index = 50; index < 100; index++) {
+		Integer[] array0 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+		Integer[] array1 = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+		Integer[] array2 = {20, 21, 22, 23, 24, 25, 26, 27, 28, 29};
+		Integer[] array3 = {30, 31, 32, 33, 34, 35, 36, 37, 38, 39};
+		Integer[] array4 = {40, 41, 42, 43, 44, 45, 46, 47, 48, 49};
+		Integer[] array5 = {50, 51, 52, 53, 54, 55, 56, 57, 58, 59};
+		Integer[] array6 = {60, 61, 62, 63, 64, 65, 66, 67, 68, 69};
+		Integer[] array7 = {70, 71, 72, 73, 74, 75, 76, 77, 78, 79};
+		Integer[] array8 = {80, 81, 82, 83, 84, 85, 86, 87, 88, 89};
+		Integer[] array9 = {90, 91, 92, 93, 94, 95, 96, 97, 98, 99};
+//		Integer[][] arrayIndexes = {array0, array1, array2, array3, array4, array5, array6, array7, array8, array9};
+		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		String name = new String();;
+		for(int combinationIndex : combinationIndexes) {
+			for(int index : arrayIndexes[combinationIndex]) {
 				indexes.add(index);
 			}
-		}
-		else if(name.equals("Primeiro e Terceiro quarto")) {
-			for(int index = 0; index < 25; index++) {
-				indexes.add(index);
-			}
-			for(int index = 50; index < 75; index++) {
-				indexes.add(index);
-			}
-		}
-		else if(name.equals("Primeiro e Último quarto")) {
-			for(int index = 0; index < 25; index++) {
-				indexes.add(index);
-			}
-			for(int index = 75; index < 100; index++) {
-				indexes.add(index);
-			}
-		}
-		else if(name.equals("Segundo e Terceiro quarto")) {
-			for(int index = 25; index < 75; index++) {
-				indexes.add(index);
-			}
-		}
-		else if(name.equals("Segundo e Último quarto")) {
-			for(int index = 25; index < 50; index++) {
-				indexes.add(index);
-			}
-			for(int index = 75; index < 100; index++) {
-				indexes.add(index);
-			}
+			name += (combinationIndex + 1) + "º, ";
 		}
 		this.indexes = indexes;
 
-		
-		this.frequency20points = 0;
-		this.frequency19points = 0;
-		this.frequency18points = 0;
-		this.frequency17points = 0;
-		this.frequency16points = 0;
-		this.frequency0points = 0;
+		//Setting name
+		name += "décimos";
+		this.name = name;
 	}
 	
 	//GETTERS AND SETTERS
@@ -151,119 +122,5 @@ public enum GameStrategy {
 
 	public void setPointsAverage(float pointsAverage) {
 		this.pointsAverage = pointsAverage;
-	}
-
-	//METHOD TO GENERATE INDEXES
-	private ArrayList<Integer> setGameStrategyIndexes() {
-		
-		ArrayList<Integer> indexes = new ArrayList<>();
-		switch (this) {
-			case FIRST_HALF:
-				for(int index = 0; index < 50; index++) {
-					indexes.add(index);
-				}
-				break;
-			case LAST_HALF:
-				for(int index = 50; index < 100; index++) {
-					indexes.add(index);
-				}
-				break;
-			case FIRST_THIRD_QUARTER:
-				for(int index = 0; index < 25; index++) {
-					indexes.add(index);
-				}
-				for(int index = 50; index < 75; index++) {
-					indexes.add(index);
-				}
-				break;
-			case FIRST_LAST_QUARTER:
-				for(int index = 0; index < 25; index++) {
-					indexes.add(index);
-				}
-				for(int index = 75; index < 100; index++) {
-					indexes.add(index);
-				}
-				break;
-			case SECOND_THIRD_QUARTER:
-				for(int index = 25; index < 75; index++) {
-					indexes.add(index);
-				}
-				break;
-			case SECOND_LAST_QUARTER:
-				for(int index = 25; index < 50; index++) {
-					indexes.add(index);
-				}
-				for(int index = 75; index < 100; index++) {
-					indexes.add(index);
-				}
-				break;
-			default:
-				break;
-		}
-		return indexes;
-	}
-	
-	//METHOD TO GET RECOMMENDED INDEXES
-	public static ArrayList<ArrayList<Integer>> getRecommendedIndexes(int gamesQuantity) {
-		
-		ArrayList<ArrayList<Integer>> indexes = new ArrayList<>();
-		
-		ArrayList<GameStrategy> gameStrategies = new ArrayList<>();
-		for(GameStrategy gameStrategy : values()) {
-			gameStrategies.add(gameStrategy);
-		}
-		Collections.sort(gameStrategies, new Comparator<GameStrategy>() {
-
-			@Override
-			public int compare(GameStrategy gameStrategy1, GameStrategy gameStrategy2) {
-				if(gameStrategy1.pointsAverage > gameStrategy2.pointsAverage) {
-					return -1;
-				}
-				if(gameStrategy1.pointsAverage < gameStrategy2.pointsAverage) {
-					return 1;
-				}
-				else {
-					return 0;
-				}
-			}
-		});
-		
-		for(int index = 0; index < gamesQuantity; index++) {
-			indexes.add(gameStrategies.get(index).getIndexes());
-		}
-		
-		return indexes;
-	}
-	
-	//METHOD TO GET RECOMMENDED STRATEGIES
-	public static ArrayList<GameStrategy> getRecommendedStrategies(int gamesQuantity) {
-		
-		ArrayList<GameStrategy> gameStrategiesSelected = new ArrayList<>();
-		
-		ArrayList<GameStrategy> gameStrategies = new ArrayList<>();
-		for(GameStrategy gameStrategy : values()) {
-			gameStrategies.add(gameStrategy);
-		}
-		Collections.sort(gameStrategies, new Comparator<GameStrategy>() {
-
-			@Override
-			public int compare(GameStrategy gameStrategy1, GameStrategy gameStrategy2) {
-				if(gameStrategy1.pointsAverage > gameStrategy2.pointsAverage) {
-					return -1;
-				}
-				if(gameStrategy1.pointsAverage < gameStrategy2.pointsAverage) {
-					return 1;
-				}
-				else {
-					return 0;
-				}
-			}
-		});
-		
-		for(int index = 0; index < gamesQuantity; index++) {
-			gameStrategiesSelected.add(gameStrategies.get(index));
-		}
-		
-		return gameStrategiesSelected;
 	}
 }

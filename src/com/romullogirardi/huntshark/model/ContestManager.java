@@ -7,10 +7,15 @@ import java.util.GregorianCalendar;
 import java.util.Vector;
 
 public class ContestManager {
+	
+	//CONSTANTS
+	public final int N = 10;
+	public final int K = 5;
 
 	//ATTRIBUTES
 	private Vector<Contest> contests = new Vector<>();
 	private Vector<NumberFrequency> numbersFrequency;
+	private Vector<GameStrategy> gameStrategies;
 	private int[] gamesQuantityFrequency;
 	
 	//IMPLEMENTING AS A SINGLETON
@@ -31,6 +36,19 @@ public class ContestManager {
 			numbersFrequency.add(new NumberFrequency(index, 0));
 		}
 
+		//Initializing gameStrategies with CombinationsGenerator
+		gameStrategies = new Vector<>();
+		Integer[] elements = new Integer[N];
+		for(int index = 1; index <= N; index++) elements[index] = index; 
+		CombinationsGenerator myCombinationsGenerator = new CombinationsGenerator(elements, K) {
+			
+			@Override
+			public void processCombination(Object[] elements, int[] combination) {
+				gameStrategies.add(new GameStrategy(combination));
+			}
+		};
+		myCombinationsGenerator.generateCombinations();
+		
 		//Initializing gamesQuantityFrequency with 0 from 0 to (Constants.GAME_MAX - 1)
 		gamesQuantityFrequency = new int[Constants.GAMES_QUANTITY_MAX + 1];
 		for(int index = 0; index < gamesQuantityFrequency.length; index++) {
@@ -159,7 +177,7 @@ public class ContestManager {
 		//Updating gameStrategy
 		Collections.sort(indexes);
 		ArrayList<Float> rewards = new ArrayList<>();
-		for(GameStrategy gameStrategy : GameStrategy.values()) {
+		for(GameStrategy gameStrategy : gameStrategies) {
 			int points = 0;
 			for(int index : indexes) {
 				if(gameStrategy.getIndexes().contains(index)) {
@@ -200,6 +218,21 @@ public class ContestManager {
 			}
 			gameStrategy.setPointsAverage(((gameStrategy.getPointsAverage() * contests.size())  + points)/(contests.size() + 1));
 		}
+		Collections.sort(gameStrategies, new Comparator<GameStrategy>() {
+
+			@Override
+			public int compare(GameStrategy gameStrategy1, GameStrategy gameStrategy2) {
+				if(gameStrategy1.getPointsAverage() > gameStrategy2.getPointsAverage()) {
+					return -1;
+				}
+				if(gameStrategy1.getPointsAverage() < gameStrategy2.getPointsAverage()) {
+					return 1;
+				}
+				else {
+					return 0;
+				}
+			}
+		});
 		
 		//Updating gamesQuantityFrequency
 		Collections.sort(rewards);
@@ -246,7 +279,7 @@ public class ContestManager {
 		}
 		
 		//Setting recommendedGames
-		ArrayList<ArrayList<Integer>> recommendedIndexes = GameStrategy.getRecommendedIndexes(gamesQuantity);
+		ArrayList<ArrayList<Integer>> recommendedIndexes = getRecommendedIndexes(gamesQuantity);
 		for(ArrayList<Integer> indexes : recommendedIndexes) {
 			ArrayList<Integer> numbers = new ArrayList<>();
 			for(Integer index : indexes) {
@@ -283,7 +316,7 @@ public class ContestManager {
 		}
 
 		System.out.println("\nEstratégias");
-		for(GameStrategy gameStrategy : GameStrategy.getRecommendedStrategies(Constants.GAMES_QUANTITY_MAX)) {
+		for(GameStrategy gameStrategy : getRecommendedStrategies(Constants.GAMES_QUANTITY_MAX)) {
 			System.out.println(gameStrategy.getName() + " => " + gameStrategy.getPointsAverage());
 		}
 
@@ -307,6 +340,28 @@ public class ContestManager {
 		System.out.println();
 	}
 	
+	private ArrayList<ArrayList<Integer>> getRecommendedIndexes(int gamesQuantity) {
+		
+		ArrayList<ArrayList<Integer>> indexes = new ArrayList<>();
+
+		for(int index = 0; index < gamesQuantity; index++) {
+			indexes.add(gameStrategies.get(index).getIndexes());
+		}
+		
+		return indexes;
+	}
+	
+	private ArrayList<GameStrategy> getRecommendedStrategies(int gamesQuantity) {
+		
+		ArrayList<GameStrategy> gameStrategiesSelected = new ArrayList<>();
+		
+		for(int index = 0; index < gamesQuantity; index++) {
+			gameStrategiesSelected.add(gameStrategies.get(index));
+		}
+		
+		return gameStrategiesSelected;
+	}
+
 	public void populateContests() {
 		
 		float reward20points = 1000000;
