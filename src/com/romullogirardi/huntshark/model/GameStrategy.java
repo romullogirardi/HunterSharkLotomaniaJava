@@ -20,24 +20,29 @@ public class GameStrategy {
 		
 		//Setting indexes
 		int numberOfArrays = 100 / ContestManager.getInstance().N;
-		Integer[][] arrayIndexes = new Integer[numberOfArrays][];
-		Integer[] array = new Integer[100 / numberOfArrays];
+		int arrayLength = 100 / numberOfArrays;		
+		Integer[][] arrayIndexes = new Integer[numberOfArrays][arrayLength];
+		Integer[] array = new Integer[arrayLength];
+		int lowLimit = 0, highLimit = 10;
 		for(int index = 0; index < 100; index++) {
-			
+			if(lowLimit <= index && index < highLimit) {
+				if(lowLimit == 0) {
+					array[index] = index;
+				}
+				else {
+					array[index % lowLimit] = index;
+				}
+			}
+			else {
+				arrayIndexes[lowLimit / 10] = array;
+				array = new Integer[arrayLength];
+				array[0] = index;
+				lowLimit += 10;
+				highLimit += 10;
+			}
 		}
-		Integer[] array0 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-		Integer[] array1 = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-		Integer[] array2 = {20, 21, 22, 23, 24, 25, 26, 27, 28, 29};
-		Integer[] array3 = {30, 31, 32, 33, 34, 35, 36, 37, 38, 39};
-		Integer[] array4 = {40, 41, 42, 43, 44, 45, 46, 47, 48, 49};
-		Integer[] array5 = {50, 51, 52, 53, 54, 55, 56, 57, 58, 59};
-		Integer[] array6 = {60, 61, 62, 63, 64, 65, 66, 67, 68, 69};
-		Integer[] array7 = {70, 71, 72, 73, 74, 75, 76, 77, 78, 79};
-		Integer[] array8 = {80, 81, 82, 83, 84, 85, 86, 87, 88, 89};
-		Integer[] array9 = {90, 91, 92, 93, 94, 95, 96, 97, 98, 99};
-//		Integer[][] arrayIndexes = {array0, array1, array2, array3, array4, array5, array6, array7, array8, array9};
 		ArrayList<Integer> indexes = new ArrayList<Integer>();
-		String name = new String();;
+		String name = new String();
 		for(int combinationIndex : combinationIndexes) {
 			for(int index : arrayIndexes[combinationIndex]) {
 				indexes.add(index);

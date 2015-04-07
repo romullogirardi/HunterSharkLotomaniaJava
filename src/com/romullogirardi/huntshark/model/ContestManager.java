@@ -39,7 +39,7 @@ public class ContestManager {
 		//Initializing gameStrategies with CombinationsGenerator
 		gameStrategies = new Vector<>();
 		Integer[] elements = new Integer[N];
-		for(int index = 1; index <= N; index++) elements[index] = index; 
+		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
 		CombinationsGenerator myCombinationsGenerator = new CombinationsGenerator(elements, K) {
 			
 			@Override
