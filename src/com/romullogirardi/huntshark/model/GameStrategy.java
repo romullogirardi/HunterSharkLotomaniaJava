@@ -19,28 +19,47 @@ public class GameStrategy {
 	public GameStrategy(int[] combinationIndexes) {
 		
 		//Setting indexes
-		int numberOfArrays = 100 / ContestManager.getInstance().N;
-		int arrayLength = 100 / numberOfArrays;		
-		Integer[][] arrayIndexes = new Integer[numberOfArrays][arrayLength];
-		Integer[] array = new Integer[arrayLength];
-		int lowLimit = 0, highLimit = 10;
+//		int numberOfArrays = 100 / ContestManager.getInstance().N;
+//		int arrayLength = 100 / numberOfArrays;		
+//		Integer[][] arrayIndexes = new Integer[numberOfArrays][arrayLength];
+//		Integer[] array = new Integer[arrayLength];
+//		int lowLimit = 0, highLimit = 10;
+//		for(int index = 0; index < 100; index++) {
+//			if(lowLimit <= index && index < highLimit) {
+//				if(lowLimit == 0) {
+//					array[index] = index;
+//				}
+//				else {
+//					array[index % lowLimit] = index;
+//				}
+//			}
+//			else {
+//				arrayIndexes[lowLimit / 10] = array;
+//				array = new Integer[arrayLength];
+//				array[0] = index;
+//				lowLimit += 10;
+//				highLimit += 10;
+//			}
+//		}
+		Integer[] arrayIndex1 = new Integer[25];
+		Integer[] arrayIndex2 = new Integer[25];
+		Integer[] arrayIndex3 = new Integer[25];
+		Integer[] arrayIndex4 = new Integer[25];
 		for(int index = 0; index < 100; index++) {
-			if(lowLimit <= index && index < highLimit) {
-				if(lowLimit == 0) {
-					array[index] = index;
-				}
-				else {
-					array[index % lowLimit] = index;
-				}
+			if(index < 25) {
+				arrayIndex1[index] = index;
 			}
-			else {
-				arrayIndexes[lowLimit / 10] = array;
-				array = new Integer[arrayLength];
-				array[0] = index;
-				lowLimit += 10;
-				highLimit += 10;
+			else if(index < 50) {
+				arrayIndex1[index - 25] = index;
+			}
+			else if(index < 75) {
+				arrayIndex1[index - 50] = index;
+			}
+			else if(index < 100) {
+				arrayIndex1[index - 75] = index;
 			}
 		}
+		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4};
 		ArrayList<Integer> indexes = new ArrayList<Integer>();
 		String name = new String();
 		for(int combinationIndex : combinationIndexes) {
@@ -52,7 +71,7 @@ public class GameStrategy {
 		this.indexes = indexes;
 
 		//Setting name
-		name += "décimos";
+		name += "quartos";
 		this.name = name;
 	}
 	
