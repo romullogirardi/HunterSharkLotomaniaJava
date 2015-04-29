@@ -68,6 +68,10 @@ public class HTMLParser{
 	
 	public static void readContestsFromHTMLFile() {
 		
+		//Parsing HTML file
+		parseHtmlFile();
+
+		//Reading contests from HTML file		
 		Element table = htmlFile.select("table").get(0);
 		for(Element row : table.select("tr")) {
 			
@@ -178,37 +182,43 @@ public class HTMLParser{
 							place += "/" + rowElements.get(columnIndex).text();
 							break;
 						case CONTEST_REWARD_20_POINTS_INDEX:
-							float readReward20Points = Float.parseFloat(rowElements.get(columnIndex).text());
+							String readReward20PointsStr = toFloatStringFormat(rowElements.get(columnIndex).text());
+							float readReward20Points = Float.parseFloat(readReward20PointsStr);
 							if(readReward20Points != 0) {
 								reward20points = readReward20Points;
 							}
 							break;
 						case CONTEST_REWARD_19_POINTS_INDEX:
-							float readReward19Points = Float.parseFloat(rowElements.get(columnIndex).text());
+							String readReward19PointsStr = toFloatStringFormat(rowElements.get(columnIndex).text());
+							float readReward19Points = Float.parseFloat(readReward19PointsStr);
 							if(readReward19Points != 0) {
 								reward19points = readReward19Points;
 							}
 							break;
 						case CONTEST_REWARD_18_POINTS_INDEX:
-							float readReward18Points = Float.parseFloat(rowElements.get(columnIndex).text());
+							String readReward18PointsStr = toFloatStringFormat(rowElements.get(columnIndex).text());
+							float readReward18Points = Float.parseFloat(readReward18PointsStr);
 							if(readReward18Points != 0) {
 								reward18points = readReward18Points;
 							}
 							break;
 						case CONTEST_REWARD_17_POINTS_INDEX:
-							float readReward17Points = Float.parseFloat(rowElements.get(columnIndex).text());
+							String readReward17PointsStr = toFloatStringFormat(rowElements.get(columnIndex).text());
+							float readReward17Points = Float.parseFloat(readReward17PointsStr);
 							if(readReward17Points != 0) {
 								reward17points = readReward17Points;
 							}
 							break;
 						case CONTEST_REWARD_16_POINTS_INDEX:
-							float readReward16Points = Float.parseFloat(rowElements.get(columnIndex).text());
+							String readReward16PointsStr = toFloatStringFormat(rowElements.get(columnIndex).text());
+							float readReward16Points = Float.parseFloat(readReward16PointsStr);
 							if(readReward16Points != 0) {
 								reward16points = readReward16Points;
 							}
 							break;
 						case CONTEST_REWARD_0_POINTS_INDEX:
-							float readReward0Points = Float.parseFloat(rowElements.get(columnIndex).text());
+							String readReward0PointsStr = toFloatStringFormat(rowElements.get(columnIndex).text());
+							float readReward0Points = Float.parseFloat(readReward0PointsStr);
 							if(readReward0Points != 0) {
 								reward0points = readReward0Points;
 							}
@@ -224,8 +234,14 @@ public class HTMLParser{
 		}
 	}
 	
+	private static String toFloatStringFormat(String notFloatStringFormat) {
+		String temp = notFloatStringFormat.replace(".", "");
+		String floatStringFormat = temp.replace(",", ".");
+		return floatStringFormat;
+	}
+	
 	public static void main(String args[]) { 
-
+		
 		//Parsing HTML file
 		parseHtmlFile();
 		

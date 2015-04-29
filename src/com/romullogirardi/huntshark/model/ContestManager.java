@@ -1,6 +1,10 @@
 package com.romullogirardi.huntshark.model;
 
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Vector;
@@ -8,8 +12,8 @@ import java.util.Vector;
 public class ContestManager {
 	
 	//CONSTANTS
-	public final int N = 25;
-	public final int K = 2;
+	public final int N = 10;
+	public final int K = 5;
 
 	//ATTRIBUTES
 	private Vector<Contest> contests = new Vector<>();
@@ -325,9 +329,11 @@ public class ContestManager {
 			totalInvestment += contest.getRecommendedInvestment();
 			totalReward += contest.getRecommendedReward();
 		}
-		System.out.println("\nInvestimento total: R$ " + totalInvestment);
-		System.out.println("Recompensa total: R$ " + totalReward);
-		System.out.println("Lucro total: R$ " + (totalReward - totalInvestment));
+		System.out.println("\nInvestimento total: R$ " + String.format("%.2f", (float) totalInvestment));
+		System.out.println("Recompensa total: R$ " + String.format("%.2f", (float) totalReward));
+		System.out.println("Lucro total: R$ " + String.format("%.2f", (float) (totalReward - totalInvestment)));
+		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//		System.out.println("Período avaliado: " + mDateFormat.format(contests.firstElement().getDate().getTime()) + " - " + mDateFormat.format(contests.lastElement().getDate().getTime()));
 		
 		System.out.println("\nPróximo jogo: ");
 		for(Game game : contests.lastElement().getRecommendedGames()) {

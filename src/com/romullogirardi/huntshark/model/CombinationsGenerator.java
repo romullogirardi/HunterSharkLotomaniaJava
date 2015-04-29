@@ -69,17 +69,17 @@ public abstract class CombinationsGenerator {
 		}
 	}
 	
-	private int c(int n, int r){
+	private long c(int n, int r){
 	
-		int nf=fact(n);
-		int rf=fact(r);
-		int nrf=fact(n-r);
-		int npr=nf/nrf;
-		int ncr=npr/rf;
+		long nf=fact(n);
+		long rf=fact(r);
+		long nrf=fact(n-r);
+		long npr=nf/nrf;
+		long ncr=npr/rf;
 		return ncr;
 	}
 	
-	private int fact(int n) {
+	private long fact(int n) {
 		
 		if(n == 0)
 			return 1;

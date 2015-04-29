@@ -41,25 +41,71 @@ public class GameStrategy {
 //				highLimit += 10;
 //			}
 //		}
-		Integer[] arrayIndex1 = new Integer[25];
-		Integer[] arrayIndex2 = new Integer[25];
-		Integer[] arrayIndex3 = new Integer[25];
-		Integer[] arrayIndex4 = new Integer[25];
+		
+//		Integer[] arrayIndex1 = new Integer[25];
+//		Integer[] arrayIndex2 = new Integer[25];
+//		Integer[] arrayIndex3 = new Integer[25];
+//		Integer[] arrayIndex4 = new Integer[25];
+//		for(int index = 0; index < 100; index++) {
+//			if(index < 25) {
+//				arrayIndex1[index] = index;
+//			}
+//			else if(index < 50) {
+//				arrayIndex2[index - 25] = index;
+//			}
+//			else if(index < 75) {
+//				arrayIndex3[index - 50] = index;
+//			}
+//			else if(index < 100) {
+//				arrayIndex4[index - 75] = index;
+//			}
+//		}
+//		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4};
+
+		Integer[] arrayIndex1 = new Integer[10];
+		Integer[] arrayIndex2 = new Integer[10];
+		Integer[] arrayIndex3 = new Integer[10];
+		Integer[] arrayIndex4 = new Integer[10];
+		Integer[] arrayIndex5 = new Integer[10];
+		Integer[] arrayIndex6 = new Integer[10];
+		Integer[] arrayIndex7 = new Integer[10];
+		Integer[] arrayIndex8 = new Integer[10];
+		Integer[] arrayIndex9 = new Integer[10];
+		Integer[] arrayIndex10 = new Integer[10];
 		for(int index = 0; index < 100; index++) {
-			if(index < 25) {
+			if(index < 10) {
 				arrayIndex1[index] = index;
 			}
-			else if(index < 50) {
-				arrayIndex1[index - 25] = index;
+			else if(index < 20) {
+				arrayIndex2[index - 10] = index;
 			}
-			else if(index < 75) {
-				arrayIndex1[index - 50] = index;
+			else if(index < 30) {
+				arrayIndex3[index - 20] = index;
+			}
+			else if(index < 40) {
+				arrayIndex4[index - 30] = index;
+			}
+			else if(index < 50) {
+				arrayIndex5[index - 40] = index;
+			}
+			else if(index < 60) {
+				arrayIndex6[index - 50] = index;
+			}
+			else if(index < 70) {
+				arrayIndex7[index - 60] = index;
+			}
+			else if(index < 80) {
+				arrayIndex8[index - 70] = index;
+			}
+			else if(index < 90) {
+				arrayIndex9[index - 80] = index;
 			}
 			else if(index < 100) {
-				arrayIndex1[index - 75] = index;
+				arrayIndex10[index - 90] = index;
 			}
 		}
-		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4};
+		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4, arrayIndex5, arrayIndex6, arrayIndex7, arrayIndex8, arrayIndex9, arrayIndex10};
+		
 		ArrayList<Integer> indexes = new ArrayList<Integer>();
 		String name = new String();
 		for(int combinationIndex : combinationIndexes) {
