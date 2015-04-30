@@ -96,7 +96,7 @@ public class HTMLParser{
 							try {
 								id = Integer.parseInt(rowElements.get(columnIndex).text());
 							} catch (Exception e) {
-								System.out.println("ID inválido");
+//								System.out.println("ID inválido");
 							}
 							break;
 						case CONTEST_DATE_INDEX:
@@ -111,7 +111,7 @@ public class HTMLParser{
 									int year = Integer.parseInt(yearStr);
 									date = new GregorianCalendar(year, month - 1, day);
 								} catch (Exception e) {
-									System.out.println("Data inválida");
+//									System.out.println("Data inválida");
 								}
 							}
 							break;

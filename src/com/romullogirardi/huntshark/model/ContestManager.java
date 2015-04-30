@@ -132,6 +132,7 @@ public class ContestManager {
 					default:
 						break;
 				}
+				System.out.println("Concurso " + lastContestResult.getId() + ": Marquei " + numberOfPoints + " pontos e ganhei R$ " + game.getReward());
 			}
 			
 			//Increasing total investment and reward
@@ -219,20 +220,31 @@ public class ContestManager {
 						break;
 				}
 			}
+			if(points > gameStrategy.getPointsMax()) {
+				gameStrategy.setPointsMax(points);
+			}
 			gameStrategy.setPointsAverage(((gameStrategy.getPointsAverage() * contests.size())  + points)/(contests.size() + 1));
 		}
 		Collections.sort(gameStrategies, new Comparator<GameStrategy>() {
 
 			@Override
 			public int compare(GameStrategy gameStrategy1, GameStrategy gameStrategy2) {
-				if(gameStrategy1.getPointsAverage() > gameStrategy2.getPointsAverage()) {
+				if(gameStrategy1.getPointsMax() > gameStrategy2.getPointsMax()) {
 					return -1;
 				}
-				if(gameStrategy1.getPointsAverage() < gameStrategy2.getPointsAverage()) {
+				if(gameStrategy1.getPointsMax() < gameStrategy2.getPointsMax()) {
 					return 1;
 				}
 				else {
-					return 0;
+					if(gameStrategy1.getPointsAverage() > gameStrategy2.getPointsAverage()) {
+						return -1;
+					}
+					if(gameStrategy1.getPointsAverage() < gameStrategy2.getPointsAverage()) {
+						return 1;
+					}
+					else {
+						return 0;
+					}
 				}
 			}
 		});
@@ -319,8 +331,8 @@ public class ContestManager {
 		}
 
 		System.out.println("\nEstratégias");
-		for(GameStrategy gameStrategy : getRecommendedStrategies(Constants.GAMES_QUANTITY_MAX)) {
-			System.out.println(gameStrategy.getName() + " => " + gameStrategy.getPointsAverage());
+		for(GameStrategy gameStrategy : getRecommendedStrategies(5 * Constants.GAMES_QUANTITY_MAX)) {
+			System.out.println(gameStrategy.getName() + " => MAX: " + gameStrategy.getPointsMax() + " pontos, MÉDIA: " + gameStrategy.getPointsAverage() + " pontos");
 		}
 
 		float totalInvestment = 0;
@@ -332,7 +344,7 @@ public class ContestManager {
 		System.out.println("\nInvestimento total: R$ " + String.format("%.2f", (float) totalInvestment));
 		System.out.println("Recompensa total: R$ " + String.format("%.2f", (float) totalReward));
 		System.out.println("Lucro total: R$ " + String.format("%.2f", (float) (totalReward - totalInvestment)));
-		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //		System.out.println("Período avaliado: " + mDateFormat.format(contests.firstElement().getDate().getTime()) + " - " + mDateFormat.format(contests.lastElement().getDate().getTime()));
 		
 		System.out.println("\nPróximo jogo: ");

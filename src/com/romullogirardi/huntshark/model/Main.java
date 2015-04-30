@@ -11,7 +11,7 @@ public class Main {
 		ContestManager.getInstance().populateContests();
 		
 		//Computing last contest
-		int[] numbers21 = {2, 3, 7, 9, 11, 15, 16, 18, 34, 50, 57, 63, 68, 74, 83, 85, 86, 87, 94, 96};
-		ContestManager.getInstance().computeLastContest(new Contest(1538, new GregorianCalendar(2015, 2, 14), "ROSEIRA-SP", numbers21, 1000000, 20000, 10000, 5000, 2500, 1000000), true);
+		int[] lastContest = {3, 6, 14, 21, 37, 46, 49, 56, 59, 60, 63, 64, 66, 74, 78, 79, 84, 92, 94, 95};
+		ContestManager.getInstance().computeLastContest(new Contest(1549, new GregorianCalendar(2015, 4, 25), "INTANHAEM-SP", lastContest, (float) 3554440.58, (float) 35315.39, (float) 3116.06, (float) 183.25, (float) 28.81, (float) 158919.25), true);
 	}
 }

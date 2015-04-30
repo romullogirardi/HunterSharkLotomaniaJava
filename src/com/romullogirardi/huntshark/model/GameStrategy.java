@@ -13,6 +13,7 @@ public class GameStrategy {
 	private int frequency17points = 0;
 	private int frequency16points = 0;
 	private int frequency0points = 0;
+	private int pointsMax = 0;
 	private float pointsAverage = 0;
 	
 	//CONSTRUCTOR
@@ -117,7 +118,8 @@ public class GameStrategy {
 		this.indexes = indexes;
 
 		//Setting name
-		name += "quartos";
+//		name += "quartos";
+		name += "décimos";
 		this.name = name;
 	}
 	
@@ -184,6 +186,14 @@ public class GameStrategy {
 
 	public void setFrequency0points(int frequency0points) {
 		this.frequency0points = frequency0points;
+	}
+
+	public int getPointsMax() {
+		return pointsMax;
+	}
+
+	public void setPointsMax(int pointsMax) {
+		this.pointsMax = pointsMax;
 	}
 
 	public float getPointsAverage() {
