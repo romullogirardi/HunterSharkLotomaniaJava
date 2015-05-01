@@ -1,10 +1,8 @@
 package com.romullogirardi.huntshark.model;
 
 import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Vector;
@@ -12,8 +10,8 @@ import java.util.Vector;
 public class ContestManager {
 	
 	//CONSTANTS
-	public final int N = 10;
-	public final int K = 5;
+	public final int N = 100;
+	public final int K = 50;
 
 	//ATTRIBUTES
 	private Vector<Contest> contests = new Vector<>();
@@ -61,6 +59,8 @@ public class ContestManager {
 	
 	//METHODS
 	public void computeLastContest(Contest lastContestResult, boolean print) {
+		
+		System.out.println("Computando o concurso " + String.valueOf(lastContestResult.getId()) + "...");
 		
 		//If exists a contest
 		if(!contests.isEmpty()) {
@@ -132,7 +132,7 @@ public class ContestManager {
 					default:
 						break;
 				}
-				System.out.println("Concurso " + lastContestResult.getId() + ": Marquei " + numberOfPoints + " pontos e ganhei R$ " + game.getReward());
+				System.out.println("CONCURSO " + lastContestResult.getId() + ": MARQUEI " + numberOfPoints + " PONTOS E GANHEI R$ " + game.getReward());
 			}
 			
 			//Increasing total investment and reward
@@ -310,6 +310,11 @@ public class ContestManager {
 
 	public void print() {
 		
+//		System.out.println("\nTodos os concursos:\n");
+//		for(int index = 0; index < contests.size() - 1; index++) {
+//			System.out.println(contests.get(index).toString());
+//		}
+		
 		System.out.println("\nJogo anterior: ");
 		if((contests.size() - 2) >= 0) {
 			for(Game game : contests.get(contests.size() - 2).getRecommendedGames()) {
@@ -330,8 +335,9 @@ public class ContestManager {
 			System.out.println(index + " => " + gamesQuantityFrequency[index]);
 		}
 
-		System.out.println("\nEstratégias");
+		System.out.println("\nEstratégias(" + gameStrategies.size() + ")");
 		for(GameStrategy gameStrategy : getRecommendedStrategies(5 * Constants.GAMES_QUANTITY_MAX)) {
+//		for(GameStrategy gameStrategy : gameStrategies) {
 			System.out.println(gameStrategy.getName() + " => MAX: " + gameStrategy.getPointsMax() + " pontos, MÉDIA: " + gameStrategy.getPointsAverage() + " pontos");
 		}
 
@@ -344,8 +350,8 @@ public class ContestManager {
 		System.out.println("\nInvestimento total: R$ " + String.format("%.2f", (float) totalInvestment));
 		System.out.println("Recompensa total: R$ " + String.format("%.2f", (float) totalReward));
 		System.out.println("Lucro total: R$ " + String.format("%.2f", (float) (totalReward - totalInvestment)));
-//		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//		System.out.println("Período avaliado: " + mDateFormat.format(contests.firstElement().getDate().getTime()) + " - " + mDateFormat.format(contests.lastElement().getDate().getTime()));
+		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		System.out.println("Período avaliado: " + mDateFormat.format(contests.firstElement().getDate().getTime()) + " - " + mDateFormat.format(contests.get(contests.size() - 2).getDate().getTime()));
 		
 		System.out.println("\nPróximo jogo: ");
 		for(Game game : contests.lastElement().getRecommendedGames()) {

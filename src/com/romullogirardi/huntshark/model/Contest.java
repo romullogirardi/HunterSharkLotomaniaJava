@@ -1,5 +1,7 @@
 package com.romullogirardi.huntshark.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -170,5 +172,13 @@ public class Contest {
 
 	public void setBetReward(float betReward) {
 		this.betReward = betReward;
+	}
+	
+	//OTHER METHODS
+	public String toString() {
+		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		return String.valueOf(id) + "\t" + mDateFormat.format(date.getTime()) + "\t" + numbers[0] + " ... " + numbers[19] + "\t" + place + "\t" + reward20points + "\t" + reward19points + "\t" + reward18points + "\t" + reward17points + "\t" + reward16points + "\t" + reward0points + "\t" +
+				((recommendedGames.isEmpty()) ? "Sem jogos" : recommendedGames.get(0).getPoints() + " pontos - R$ " + recommendedGames.get(0).getReward()) + "\t" + 
+				"Saldo total: " + String.valueOf(recommendedReward - recommendedInvestment);
 	}
 }
