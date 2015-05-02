@@ -73,7 +73,8 @@ public class HTMLParser{
 
 		//Reading contests from HTML file		
 		Element table = htmlFile.select("table").get(0);
-		for(Element row : table.select("tr")) {
+		Elements tableRows = table.select("tr");
+		for(int rowIndex = 0; rowIndex < tableRows.size(); rowIndex++) {
 			
 			//Setting contest variables with default values
 			int id = -1;
@@ -88,7 +89,7 @@ public class HTMLParser{
 			float reward0points = DEFAULT_REWARD_0_POINTS;
 			
 			//Creating a contest by a table row
-			Elements rowElements = row.select("td");
+			Elements rowElements = tableRows.get(rowIndex).select("td");
 			for(int columnIndex = 0; columnIndex < rowElements.size(); columnIndex++) {
 				if(!rowElements.get(columnIndex).text().isEmpty()) {
 					switch(columnIndex) {
@@ -228,8 +229,9 @@ public class HTMLParser{
 			}
 			
 			//Adding a contest, if it´s valid
+			boolean isLastContest = (rowIndex == (tableRows.size() - 1)) ? true : false;
 			if(id != -1) {
-				ContestManager.getInstance().computeLastContest(new Contest(id, date, place, numbers, reward20points, reward19points, reward18points, reward17points, reward16points, reward0points), false);
+				ContestManager.getInstance().computeLastContest(new Contest(id, date, place, numbers, reward20points, reward19points, reward18points, reward17points, reward16points, reward0points), isLastContest);
 			}
 		}
 	}
