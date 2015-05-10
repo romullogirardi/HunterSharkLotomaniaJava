@@ -1,17 +1,25 @@
 package com.romullogirardi.huntshark.model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Vector;
 
 public class ContestManager {
 	
 	//CONSTANTS
-	public final int N = 20;
-	public final int K = 10;
+	
+//	//4 arrays de 25
+//	public final int N = 4;
+//	public final int K = 2;
+	//10 arrays de 10
+	public final int N = 10;
+	public final int K = 5;
+//	//20 arrays de 5
+//	public final int N = 20;
+//	public final int K = 10;
+//	//50 arrays de 2
+//	public final int N = 50;
+//	public final int K = 25;
 
 	//ATTRIBUTES
 	private Vector<Contest> contests = new Vector<>();
@@ -22,12 +30,13 @@ public class ContestManager {
 	private static ContestManager instance = null;
 	
 	public static ContestManager getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new ContestManager();
+		}
 		return instance;
 	}
 	
-	//CONSTRUCTOR
+	//CONSTRUCTORS
 	public ContestManager() {
 		
 		//Initializing numbersFrequency with 0 from 0 to 99
@@ -35,6 +44,23 @@ public class ContestManager {
 		for(int index = 0; index < 100; index++) {
 			numbersFrequency.add(new NumberFrequency(index, 0));
 		}
+
+//		//Initializing gameStrategies with CombinationsGenerator
+//		gameStrategies = new Vector<>();
+//		Integer[] elements = new Integer[N];
+//		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
+//		CombinationsGenerator myCombinationsGenerator = new CombinationsGenerator(elements, K) {
+//			
+//			@Override
+//			public void processCombination(Object[] elements, int[] combination) {
+//				gameStrategies.add(new GameStrategy(combination));
+//			}
+//		};
+//		myCombinationsGenerator.generateCombinations();
+	}
+	
+	//METHODS
+	public void initializeGameStrategiesByCombinationsGenerator(int lowestIndex, int highestIndex) {
 
 		//Initializing gameStrategies with CombinationsGenerator
 		gameStrategies = new Vector<>();
@@ -47,10 +73,11 @@ public class ContestManager {
 				gameStrategies.add(new GameStrategy(combination));
 			}
 		};
+		if(lowestIndex != -1) myCombinationsGenerator.setLowestIndex(lowestIndex);
+		if(highestIndex != -1) myCombinationsGenerator.setHighestIndex(highestIndex);
 		myCombinationsGenerator.generateCombinations();
 	}
 	
-	//METHODS
 	public void computeLastContest(Contest lastContestResult, boolean print) {
 		
 		//If exists a contest
@@ -58,19 +85,14 @@ public class ContestManager {
 
 			//Checking last recommended games, if it exists
 			if(!contests.lastElement().getRecommendedGames().isEmpty()) {
-				checkLastGames(true, lastContestResult);
-			}
-	
-			//Checking last bet games, if it exists
-			if(!contests.lastElement().getBetGames().isEmpty()) {
-				checkLastGames(false, lastContestResult);
+				checkLastGames(lastContestResult);
 			}
 	
 			//Updating last contest
 			updateLastContest(lastContestResult);
 		}
 		
-		//Updating numbersFrequency, gameStrategy and gamesQuantityFrequency
+		//Updating numbersFrequency and gameStrategy
 		updateControllers(lastContestResult);
 		
 		//Setting next contest recommended games
@@ -82,14 +104,15 @@ public class ContestManager {
 		}
 	}
 	
-	private void checkLastGames(boolean recommended, Contest lastContestResult) {
+	private void checkLastGames(Contest lastContestResult) {
 
+		System.out.println("Computando sorteio " + lastContestResult.getId() + "...");
+		
 		float totalInvestment = 0;
 		float totalReward = 0;
 		
 		//Calculating the number of points, investment and reward of the last recommended games
-		ArrayList<Game> games = (recommended) ? contests.lastElement().getRecommendedGames() : contests.lastElement().getBetGames();
-		for(Game game: games) {
+		for(Game game: contests.lastElement().getRecommendedGames()) {
 			
 			int numberOfPoints = 0;
 			for(int number : lastContestResult.getNumbers()) {
@@ -123,7 +146,7 @@ public class ContestManager {
 					default:
 						break;
 				}
-				System.out.println("Concurso " + lastContestResult.getId() + ": Marquei " + numberOfPoints + " pontos e ganhei R$ " + game.getReward());
+//				System.out.println("Concurso " + lastContestResult.getId() + ": Marquei " + numberOfPoints + " pontos e ganhei R$ " + String.format("%.2f", (float) game.getReward()));
 			}
 			
 			//Increasing total investment and reward
@@ -132,14 +155,8 @@ public class ContestManager {
 		}
 		
 		//Setting total investment and reward
-		if(recommended) {
-			contests.lastElement().setRecommendedInvestment(totalInvestment);
-			contests.lastElement().setRecommendedReward(totalReward);
-		}
-		else {
-			contests.lastElement().setBetInvestment(totalInvestment);
-			contests.lastElement().setBetReward(totalReward);
-		}
+		contests.lastElement().setRecommendedInvestment(totalInvestment);
+		contests.lastElement().setRecommendedReward(totalReward);
 	}
 	
 	private void updateLastContest(Contest lastContestResult) {
@@ -213,46 +230,10 @@ public class ContestManager {
 			gameStrategy.setReward(gameStrategy.getReward() + reward - Constants.GAME_PRIZE);
 			gameStrategy.setPointsAverage(((gameStrategy.getPointsAverage() * contests.size())  + points)/(contests.size() + 1));
 		}
-		Collections.sort(gameStrategies, new Comparator<GameStrategy>() {
-
-			@Override
-			public int compare(GameStrategy gameStrategy1, GameStrategy gameStrategy2) {
-				if(gameStrategy1.getReward() > gameStrategy2.getReward()) {
-					return -1;
-				}
-				if(gameStrategy1.getReward() < gameStrategy2.getReward()) {
-					return 1;
-				}
-				else {
-					if(gameStrategy1.getPointsAverage() > gameStrategy2.getPointsAverage()) {
-						return -1;
-					}
-					if(gameStrategy1.getPointsAverage() < gameStrategy2.getPointsAverage()) {
-						return 1;
-					}
-					else {
-						return 0;
-					}
-				}
-			}
-		});
+		Collections.sort(gameStrategies);
 		
 		//Sorting numbersFrequency
-		Collections.sort(numbersFrequency, new Comparator<NumberFrequency>() {
-
-			@Override
-			public int compare(NumberFrequency numberFrequency1, NumberFrequency numberFrequency2) {
-				if(numberFrequency1.getFrequency() > numberFrequency2.getFrequency()) {
-					return -1;
-				}
-				if(numberFrequency1.getFrequency() < numberFrequency2.getFrequency()) {
-					return 1;
-				}
-				else {
-					return 0;
-				}
-			}
-		});
+		Collections.sort(numbersFrequency);
 	}
 	
 	private void setNextContestRecommendedGames() {
@@ -281,47 +262,49 @@ public class ContestManager {
 //			System.out.println(contests.get(index).toString());
 //		}
 		
-		System.out.println("\nJogo anterior: ");
-		if((contests.size() - 2) >= 0) {
-			for(Game game : contests.get(contests.size() - 2).getRecommendedGames()) {
-				System.out.println(game.getPoints() + " pontos - Prêmio: R$ " + game.getReward());
-			}
-		}
-		else {
-			System.out.println("Não há");
-		}
+//		System.out.println("\nJogo anterior: ");
+//		if((contests.size() - 2) >= 0) {
+//			for(Game game : contests.get(contests.size() - 2).getRecommendedGames()) {
+//				System.out.println(game.getPoints() + " pontos - Prêmio: R$ " + String.format("%.2f", (float) game.getReward()));
+//			}
+//		}
+//		else {
+//			System.out.println("Não há");
+//		}
 
-		System.out.println("\nFrequência dos números");
-		for(NumberFrequency numberFrequency : numbersFrequency) {
-			System.out.println(numberFrequency.getNumber() + " => " + numberFrequency.getFrequency());
-		}
+//		System.out.println("\nFrequência dos números");
+//		for(NumberFrequency numberFrequency : numbersFrequency) {
+//			System.out.println(numberFrequency.getNumber() + " => " + numberFrequency.getFrequency());
+//		}
 		
-		System.out.println("\nEstratégias(" + gameStrategies.size() + ")");
-		for(GameStrategy gameStrategy : getRecommendedStrategies(5 * Constants.GAMES_QUANTITY)) {
-//		for(GameStrategy gameStrategy : gameStrategies) {
-			System.out.println(gameStrategy.toString());
-		}
+//		System.out.println("\nEstratégias(" + gameStrategies.size() + ")");
+//		for(GameStrategy gameStrategy : getRecommendedStrategies(5 * Constants.GAMES_QUANTITY)) {
+//			System.out.println(gameStrategy.toString());
+//		}
 
-		float totalInvestment = 0;
-		float totalReward = 0;
-		for(Contest contest : contests) {
-			totalInvestment += contest.getRecommendedInvestment();
-			totalReward += contest.getRecommendedReward();
-		}
-		System.out.println("\nInvestimento total: R$ " + String.format("%.2f", (float) totalInvestment));
-		System.out.println("Recompensa total: R$ " + String.format("%.2f", (float) totalReward));
-		System.out.println("Lucro total: R$ " + String.format("%.2f", (float) (totalReward - totalInvestment)));
-		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.println("Período avaliado: " + mDateFormat.format(contests.firstElement().getDate().getTime()) + " - " + mDateFormat.format(contests.get(contests.size() - 2).getDate().getTime()));
+//		float totalInvestment = 0;
+//		float totalReward = 0;
+//		for(Contest contest : contests) {
+//			totalInvestment += contest.getRecommendedInvestment();
+//			totalReward += contest.getRecommendedReward();
+//		}
+//		System.out.println("\nInvestimento total: R$ " + String.format("%.2f", (float) totalInvestment));
+//		System.out.println("Recompensa total: R$ " + String.format("%.2f", (float) totalReward));
+//		System.out.println("Lucro total: R$ " + String.format("%.2f", (float) (totalReward - totalInvestment)));
+//		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//		System.out.println("Período avaliado: " + mDateFormat.format(contests.firstElement().getDate().getTime()) + " - " + mDateFormat.format(contests.get(contests.size() - 2).getDate().getTime()));
 		
-		System.out.println("\nPróximo jogo: ");
-		for(Game game : contests.lastElement().getRecommendedGames()) {
-			for(int number : game.getNumbers()) {
-				System.out.print(number + "\t");
-			}
-			System.out.println();
-		}
-		System.out.println();
+//		System.out.println("\nPróximo jogo: ");
+//		for(Game game : contests.lastElement().getRecommendedGames()) {
+//			for(int number : game.getNumbers()) {
+//				System.out.print(number + "\t");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println();
+		
+		//Updating the global GameStrategies ranker
+		Main.addToBestGameStrategies(getRecommendedStrategies(10));
 	}
 	
 	private ArrayList<ArrayList<Integer>> getRecommendedIndexes(int gamesQuantity) {

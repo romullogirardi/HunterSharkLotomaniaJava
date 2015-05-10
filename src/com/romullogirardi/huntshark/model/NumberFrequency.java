@@ -1,7 +1,7 @@
 package com.romullogirardi.huntshark.model;
 
 
-public class NumberFrequency {
+public class NumberFrequency implements Comparable<NumberFrequency> {
 	
 	//ATTRIBUTES
 	private int number;
@@ -25,5 +25,19 @@ public class NumberFrequency {
 	}
 	public void setFrequency(int frequency) {
 		this.frequency = frequency;
+	}
+
+	//OTHER METHODS
+	@Override
+	public int compareTo(NumberFrequency otherNumberFrequency) {
+		if(frequency> otherNumberFrequency.getFrequency()) {
+			return -1;
+		}
+		else if(frequency < otherNumberFrequency.getFrequency()) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 }

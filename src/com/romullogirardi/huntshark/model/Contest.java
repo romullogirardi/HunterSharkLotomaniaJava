@@ -21,9 +21,7 @@ public class Contest {
 	private ArrayList<Game> recommendedGames = new ArrayList<>();
 	private float recommendedInvestment = 0;
 	private float recommendedReward = 0;
-	private ArrayList<Game> betGames = new ArrayList<>();
-	private float betInvestment = 0;
-	private float betReward = 0;
+	private boolean bet = false;
 	
 	//CONSTRUCTORS
 	public Contest(int id, Calendar date, String place, int[] numbers,
@@ -149,31 +147,15 @@ public class Contest {
 	public void setRecommendedReward(float recommendedReward) {
 		this.recommendedReward = recommendedReward;
 	}
-
-	public ArrayList<Game> getBetGames() {
-		return betGames;
-	}
-
-	public void setBetGames(ArrayList<Game> betGames) {
-		this.betGames = betGames;
-	}
-
-	public float getBetInvestment() {
-		return betInvestment;
-	}
-
-	public void setBetInvestment(float betInvestment) {
-		this.betInvestment = betInvestment;
-	}
-
-	public float getBetReward() {
-		return betReward;
-	}
-
-	public void setBetReward(float betReward) {
-		this.betReward = betReward;
-	}
 	
+	public boolean isBet() {
+		return bet;
+	}
+
+	public void setBet(boolean bet) {
+		this.bet = bet;
+	}
+
 	//OTHER METHODS
 	public String toString() {
 		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");

@@ -1,14 +1,33 @@
 package com.romullogirardi.huntshark.model;
 
-public class Main {
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
-	public static void main(String[] args) {
+public class Main {
+	
+	//Collection which stores the 10 best GameStrategies
+	public static ArrayList<GameStrategy> bestGameStrategies = new ArrayList<GameStrategy>();
+	
+	public static void main(String[] args) throws IOException {
 		
-		//Populating contests
-		ContestManager.getInstance().populateContests();
-		
-//		//Computing last contest
-//		int[] lastContest = {3, 6, 14, 21, 37, 46, 49, 56, 59, 60, 63, 64, 66, 74, 78, 79, 84, 92, 94, 95};
-//		ContestManager.getInstance().computeLastContest(new Contest(1549, new GregorianCalendar(2015, 4, 25), "INTANHAEM-SP", lastContest, (float) 3554440.58, (float) 35315.39, (float) 3116.06, (float) 183.25, (float) 28.81, (float) 158919.25), true);
+		//Realizar iterações de 100 em 100
+		for(int index = 1; index < 3; index++) {
+			ContestManager.getInstance().initializeGameStrategiesByCombinationsGenerator(index, index * 100);
+			ContestManager.getInstance().populateContests();
+			System.out.println("\nRANKING DE ESTRATÉGIAS APÓS A 1ª ITERAÇÃO:");
+			for(GameStrategy gameStrategy : bestGameStrategies) {
+				System.out.println(gameStrategy.toString());
+			}
+			System.out.println();
+		}
+	}
+	
+	public static void addToBestGameStrategies(ArrayList<GameStrategy> gameStrategies) {
+		bestGameStrategies.addAll(gameStrategies);
+		Collections.sort(bestGameStrategies);
+		for(int index = 1; index <= (bestGameStrategies.size() - 10); index++) {
+			bestGameStrategies.remove(bestGameStrategies.size() - 1);
+		}
 	}
 }

@@ -5,6 +5,9 @@ public abstract class CombinationsGenerator {
 	//ATTRIBUTES
 	private Object[] elements;
 	private int k;
+	private int lowestIndex = -1;
+	private int highestIndex = -1;
+	private int combinationsCounter = 1;
 	
 	//CONSTRUCTOR
 	public CombinationsGenerator(Object[] elements, int k) {
@@ -12,6 +15,15 @@ public abstract class CombinationsGenerator {
 		this.k = k;
 	}
 	
+	//GETTERS AND SETTERS
+	public void setLowestIndex(int lowestIndex) {
+		this.lowestIndex = lowestIndex;
+	}
+
+	public void setHighestIndex(int highestIndex) {
+		this.highestIndex = highestIndex;
+	}
+
 	//METHODS
 	public void generateCombinations(){
 
@@ -50,8 +62,18 @@ public abstract class CombinationsGenerator {
 			// if we are at the last position print and increase the index
 			if(r == this.k - 1){
 				//do something with the combination e.g. add to list or print
-				processCombination(elements, combination);
-				index++;
+				if(isHigherOrEqualToLowestLimit() && isLowerOrEqualToHighestLimit()) {
+					processCombination(elements, combination);
+					combinationsCounter++;
+					index++;
+				}
+				else if(!isHigherOrEqualToLowestLimit()) {
+					combinationsCounter++;
+					index++;
+				}
+				else if (!isLowerOrEqualToHighestLimit()) {
+					return;
+				}
 			}
 			else{
 				// select index for next position
@@ -85,6 +107,24 @@ public abstract class CombinationsGenerator {
 			return 1;
 		else
 			return n * fact(n-1);
+	}
+	
+	private boolean isLowerOrEqualToHighestLimit() {
+		if(!(highestIndex != -1 && combinationsCounter > highestIndex)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	private boolean isHigherOrEqualToLowestLimit() {
+		if(!(lowestIndex != -1 && lowestIndex > combinationsCounter)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public abstract void processCombination(Object[] elements, int[] combination);
