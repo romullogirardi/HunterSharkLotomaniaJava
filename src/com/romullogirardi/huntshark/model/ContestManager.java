@@ -1,5 +1,7 @@
 package com.romullogirardi.huntshark.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
@@ -9,22 +11,23 @@ public class ContestManager {
 	//CONSTANTS
 	
 //	//4 arrays de 25
-//	public final int N = 4;
-//	public final int K = 2;
+//	public static final int N = 4;
+//	public static final int K = 2;
 	//10 arrays de 10
-	public final int N = 10;
-	public final int K = 5;
+	public static final int N = 10;
+	public static final int K = 5;
 //	//20 arrays de 5
-//	public final int N = 20;
-//	public final int K = 10;
+//	public static final int N = 20;
+//	public static final int K = 10;
 //	//50 arrays de 2
-//	public final int N = 50;
-//	public final int K = 25;
+//	public static final int N = 50;
+//	public static final int K = 25;
 
 	//ATTRIBUTES
 	private Vector<Contest> contests = new Vector<>();
 	private Vector<NumberFrequency> numbersFrequency;
 	private Vector<GameStrategy> gameStrategies;
+	private CombinationsGenerator combinationsGenerator;
 	
 	//IMPLEMENTING AS A SINGLETON
 	private static ContestManager instance = null;
@@ -59,6 +62,11 @@ public class ContestManager {
 //		myCombinationsGenerator.generateCombinations();
 	}
 	
+	//GETTERS AND SETTERS
+	public CombinationsGenerator getCombinationsGenerator() {
+		return combinationsGenerator;
+	}
+
 	//METHODS
 	public void initializeGameStrategiesByCombinationsGenerator(int lowestIndex, int highestIndex) {
 
@@ -66,16 +74,16 @@ public class ContestManager {
 		gameStrategies = new Vector<>();
 		Integer[] elements = new Integer[N];
 		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
-		CombinationsGenerator myCombinationsGenerator = new CombinationsGenerator(elements, K) {
+		combinationsGenerator = new CombinationsGenerator(elements, K) {
 			
 			@Override
 			public void processCombination(Object[] elements, int[] combination) {
 				gameStrategies.add(new GameStrategy(combination));
 			}
 		};
-		if(lowestIndex != -1) myCombinationsGenerator.setLowestIndex(lowestIndex);
-		if(highestIndex != -1) myCombinationsGenerator.setHighestIndex(highestIndex);
-		myCombinationsGenerator.generateCombinations();
+		if(lowestIndex != -1) combinationsGenerator.setLowestIndex(lowestIndex);
+		if(highestIndex != -1) combinationsGenerator.setHighestIndex(highestIndex);
+		combinationsGenerator.generateCombinations();
 	}
 	
 	public void computeLastContest(Contest lastContestResult, boolean print) {
@@ -261,7 +269,7 @@ public class ContestManager {
 //		for(int index = 0; index < contests.size() - 1; index++) {
 //			System.out.println(contests.get(index).toString());
 //		}
-		
+//		
 //		System.out.println("\nJogo anterior: ");
 //		if((contests.size() - 2) >= 0) {
 //			for(Game game : contests.get(contests.size() - 2).getRecommendedGames()) {
@@ -271,17 +279,17 @@ public class ContestManager {
 //		else {
 //			System.out.println("Não há");
 //		}
-
+//
 //		System.out.println("\nFrequência dos números");
 //		for(NumberFrequency numberFrequency : numbersFrequency) {
 //			System.out.println(numberFrequency.getNumber() + " => " + numberFrequency.getFrequency());
 //		}
-		
+//		
 //		System.out.println("\nEstratégias(" + gameStrategies.size() + ")");
 //		for(GameStrategy gameStrategy : getRecommendedStrategies(5 * Constants.GAMES_QUANTITY)) {
 //			System.out.println(gameStrategy.toString());
 //		}
-
+//
 //		float totalInvestment = 0;
 //		float totalReward = 0;
 //		for(Contest contest : contests) {
@@ -293,7 +301,7 @@ public class ContestManager {
 //		System.out.println("Lucro total: R$ " + String.format("%.2f", (float) (totalReward - totalInvestment)));
 //		DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //		System.out.println("Período avaliado: " + mDateFormat.format(contests.firstElement().getDate().getTime()) + " - " + mDateFormat.format(contests.get(contests.size() - 2).getDate().getTime()));
-		
+//		
 //		System.out.println("\nPróximo jogo: ");
 //		for(Game game : contests.lastElement().getRecommendedGames()) {
 //			for(int number : game.getNumbers()) {

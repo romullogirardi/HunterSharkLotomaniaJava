@@ -11,23 +11,30 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		
-		//Realizar iterações de 100 em 100
-		for(int index = 1; index < 3; index++) {
-			ContestManager.getInstance().initializeGameStrategiesByCombinationsGenerator(index, index * 100);
+//		ContestManager.getInstance().populateContests();
+		
+		//Realizar iterações de interval em interval
+		int interval = 100;
+		int index = 1;
+		do {
+			ContestManager.getInstance().initializeGameStrategiesByCombinationsGenerator((index - 1) * interval, index * interval);
 			ContestManager.getInstance().populateContests();
-			System.out.println("\nRANKING DE ESTRATÉGIAS APÓS A 1ª ITERAÇÃO:");
+			System.out.println("\nRANKING DE ESTRATÉGIAS APÓS A " + index + "ª ITERAÇÃO:");
 			for(GameStrategy gameStrategy : bestGameStrategies) {
 				System.out.println(gameStrategy.toString());
 			}
 			System.out.println();
-		}
+			index++;
+		} while (index <= ((Math.abs(ContestManager.getInstance().getCombinationsGenerator().c(ContestManager.N, ContestManager.K) / interval) + 1)));
 	}
 	
 	public static void addToBestGameStrategies(ArrayList<GameStrategy> gameStrategies) {
 		bestGameStrategies.addAll(gameStrategies);
 		Collections.sort(bestGameStrategies);
-		for(int index = 1; index <= (bestGameStrategies.size() - 10); index++) {
-			bestGameStrategies.remove(bestGameStrategies.size() - 1);
+		ArrayList<GameStrategy> temp = new ArrayList<>();
+		for(int index = 0; index < 10; index++) {
+			temp.add(bestGameStrategies.get(index));
 		}
+		bestGameStrategies = temp;
 	}
 }

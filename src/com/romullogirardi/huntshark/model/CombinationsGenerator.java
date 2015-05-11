@@ -91,7 +91,7 @@ public abstract class CombinationsGenerator {
 		}
 	}
 	
-	private long c(int n, int r){
+	public long c(int n, int r){
 	
 		long nf=fact(n);
 		long rf=fact(r);
