@@ -63,6 +63,7 @@ public abstract class CombinationsGenerator {
 			if(r == this.k - 1){
 				//do something with the combination e.g. add to list or print
 				if(isHigherOrEqualToLowestLimit() && isLowerOrEqualToHighestLimit()) {
+//					System.out.println("Criando a " + combinationsCounter + "ª estratégia de jogo...");
 					processCombination(elements, combination);
 					combinationsCounter++;
 					index++;

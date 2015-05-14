@@ -14,18 +14,25 @@ public class Main {
 //		ContestManager.getInstance().populateContests();
 		
 		//Realizar iterações de interval em interval
-		int interval = 100;
+		int interval = 10000;
 		int index = 1;
+		long numberOfIterations = -1;
 		do {
+			if(numberOfIterations != -1) {
+				System.out.println("Computando iteração " + index + "/" + numberOfIterations + "...");
+			}
 			ContestManager.getInstance().initializeGameStrategiesByCombinationsGenerator((index - 1) * interval, index * interval);
 			ContestManager.getInstance().populateContests();
-			System.out.println("\nRANKING DE ESTRATÉGIAS APÓS A " + index + "ª ITERAÇÃO:");
+			System.out.println("RANKING DE ESTRATÉGIAS APÓS A " + index + "ª ITERAÇÃO:");
 			for(GameStrategy gameStrategy : bestGameStrategies) {
 				System.out.println(gameStrategy.toString());
 			}
 			System.out.println();
 			index++;
-		} while (index <= ((Math.abs(ContestManager.getInstance().getCombinationsGenerator().c(ContestManager.N, ContestManager.K) / interval) + 1)));
+			if(numberOfIterations == -1) {
+				numberOfIterations = Math.abs(ContestManager.getInstance().getCombinationsGenerator().c(ContestManager.N, ContestManager.K) / interval) + 1;
+			}
+		} while (index <= numberOfIterations);
 	}
 	
 	public static void addToBestGameStrategies(ArrayList<GameStrategy> gameStrategies) {

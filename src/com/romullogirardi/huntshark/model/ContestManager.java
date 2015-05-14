@@ -13,12 +13,12 @@ public class ContestManager {
 //	//4 arrays de 25
 //	public static final int N = 4;
 //	public static final int K = 2;
-	//10 arrays de 10
-	public static final int N = 10;
-	public static final int K = 5;
-//	//20 arrays de 5
-//	public static final int N = 20;
-//	public static final int K = 10;
+//	//10 arrays de 10
+//	public static final int N = 10;
+//	public static final int K = 5;
+	//20 arrays de 5
+	public static final int N = 20;
+	public static final int K = 10;
 //	//50 arrays de 2
 //	public static final int N = 50;
 //	public static final int K = 25;
@@ -114,7 +114,7 @@ public class ContestManager {
 	
 	private void checkLastGames(Contest lastContestResult) {
 
-		System.out.println("Computando sorteio " + lastContestResult.getId() + "...");
+//		System.out.println("Computando sorteio " + lastContestResult.getId() + "...");
 		
 		float totalInvestment = 0;
 		float totalReward = 0;
