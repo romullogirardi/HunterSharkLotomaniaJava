@@ -14,7 +14,7 @@ public class Main {
 //		ContestManager.getInstance().populateContests();
 		
 		//Realizar iterações de interval em interval
-		int interval = 10000;
+		int interval = 1000;
 		int index = 1;
 		long numberOfIterations = -1;
 		do {

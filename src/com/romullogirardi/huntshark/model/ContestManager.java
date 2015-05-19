@@ -16,12 +16,12 @@ public class ContestManager {
 //	//10 arrays de 10
 //	public static final int N = 10;
 //	public static final int K = 5;
-	//20 arrays de 5
-	public static final int N = 20;
-	public static final int K = 10;
-//	//50 arrays de 2
-//	public static final int N = 50;
-//	public static final int K = 25;
+//	//20 arrays de 5
+//	public static final int N = 20;
+//	public static final int K = 10;
+	//50 arrays de 2
+	public static final int N = 50;
+	public static final int K = 25;
 
 	//ATTRIBUTES
 	private Vector<Contest> contests = new Vector<>();
