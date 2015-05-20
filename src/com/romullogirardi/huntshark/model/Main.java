@@ -1,6 +1,7 @@
 package com.romullogirardi.huntshark.model;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,9 +17,9 @@ public class Main {
 		//Realizar iterações de interval em interval
 		int interval = 1000;
 		int index = 1;
-		long numberOfIterations = -1;
+		BigInteger numberOfIterations = BigInteger.ZERO;
 		do {
-			if(numberOfIterations != -1) {
+			if(numberOfIterations != BigInteger.ZERO) {
 				System.out.println("Computando iteração " + index + "/" + numberOfIterations + "...");
 			}
 			ContestManager.getInstance().initializeGameStrategiesByCombinationsGenerator((index - 1) * interval, index * interval);
@@ -29,10 +30,10 @@ public class Main {
 			}
 			System.out.println();
 			index++;
-			if(numberOfIterations == -1) {
-				numberOfIterations = Math.abs(ContestManager.getInstance().getCombinationsGenerator().c(ContestManager.N, ContestManager.K) / interval) + 1;
+			if(numberOfIterations == BigInteger.ZERO) {
+				numberOfIterations = ContestManager.getInstance().getCombinationsGenerator().c(ContestManager.N, ContestManager.K).divide(BigInteger.valueOf(interval)).add(BigInteger.ONE);
 			}
-		} while (index <= numberOfIterations);
+		} while (index <= numberOfIterations.longValue());
 	}
 	
 	public static void addToBestGameStrategies(ArrayList<GameStrategy> gameStrategies) {

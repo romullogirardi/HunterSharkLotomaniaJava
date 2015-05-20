@@ -171,220 +171,227 @@ public class GameStrategy implements Comparable<GameStrategy> {
 //		}
 //		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4, arrayIndex5, arrayIndex6, arrayIndex7, arrayIndex8, arrayIndex9, arrayIndex10, arrayIndex11, arrayIndex12, arrayIndex13, arrayIndex14, arrayIndex15, arrayIndex16, arrayIndex17, arrayIndex18, arrayIndex19, arrayIndex20};
 
-		//50 arrays de 2
-		Integer[] arrayIndex1 = new Integer[2];
-		Integer[] arrayIndex2 = new Integer[2];
-		Integer[] arrayIndex3 = new Integer[2];
-		Integer[] arrayIndex4 = new Integer[2];
-		Integer[] arrayIndex5 = new Integer[2];
-		Integer[] arrayIndex6 = new Integer[2];
-		Integer[] arrayIndex7 = new Integer[2];
-		Integer[] arrayIndex8 = new Integer[2];
-		Integer[] arrayIndex9 = new Integer[2];
-		Integer[] arrayIndex10 = new Integer[2];
-		Integer[] arrayIndex11 = new Integer[2];
-		Integer[] arrayIndex12 = new Integer[2];
-		Integer[] arrayIndex13 = new Integer[2];
-		Integer[] arrayIndex14 = new Integer[2];
-		Integer[] arrayIndex15 = new Integer[2];
-		Integer[] arrayIndex16 = new Integer[2];
-		Integer[] arrayIndex17 = new Integer[2];
-		Integer[] arrayIndex18 = new Integer[2];
-		Integer[] arrayIndex19 = new Integer[2];
-		Integer[] arrayIndex20 = new Integer[2];
-		Integer[] arrayIndex21 = new Integer[2];
-		Integer[] arrayIndex22 = new Integer[2];
-		Integer[] arrayIndex23 = new Integer[2];
-		Integer[] arrayIndex24 = new Integer[2];
-		Integer[] arrayIndex25 = new Integer[2];
-		Integer[] arrayIndex26 = new Integer[2];
-		Integer[] arrayIndex27 = new Integer[2];
-		Integer[] arrayIndex28 = new Integer[2];
-		Integer[] arrayIndex29 = new Integer[2];
-		Integer[] arrayIndex30 = new Integer[2];
-		Integer[] arrayIndex31 = new Integer[2];
-		Integer[] arrayIndex32 = new Integer[2];
-		Integer[] arrayIndex33 = new Integer[2];
-		Integer[] arrayIndex34 = new Integer[2];
-		Integer[] arrayIndex35 = new Integer[2];
-		Integer[] arrayIndex36 = new Integer[2];
-		Integer[] arrayIndex37 = new Integer[2];
-		Integer[] arrayIndex38 = new Integer[2];
-		Integer[] arrayIndex39 = new Integer[2];
-		Integer[] arrayIndex40 = new Integer[2];
-		Integer[] arrayIndex41 = new Integer[2];
-		Integer[] arrayIndex42 = new Integer[2];
-		Integer[] arrayIndex43 = new Integer[2];
-		Integer[] arrayIndex44 = new Integer[2];
-		Integer[] arrayIndex45 = new Integer[2];
-		Integer[] arrayIndex46 = new Integer[2];
-		Integer[] arrayIndex47 = new Integer[2];
-		Integer[] arrayIndex48 = new Integer[2];
-		Integer[] arrayIndex49 = new Integer[2];
-		Integer[] arrayIndex50 = new Integer[2];
-		for(int index = 0; index < 100; index++) {
-			if(index < 2) {
-				arrayIndex1[index] = index;
-			}
-			else if(index < 4) {
-				arrayIndex2[index - 2] = index;
-			}
-			else if(index < 6) {
-				arrayIndex3[index - 4] = index;
-			}
-			else if(index < 8) {
-				arrayIndex4[index - 6] = index;
-			}
-			else if(index < 10) {
-				arrayIndex5[index - 8] = index;
-			}
-			else if(index < 12) {
-				arrayIndex6[index - 10] = index;
-			}
-			else if(index < 14) {
-				arrayIndex7[index - 12] = index;
-			}
-			else if(index < 16) {
-				arrayIndex8[index - 14] = index;
-			}
-			else if(index < 18) {
-				arrayIndex9[index - 16] = index;
-			}
-			else if(index < 20) {
-				arrayIndex10[index - 18] = index;
-			}
-			else if(index < 22) {
-				arrayIndex11[index - 20] = index;
-			}
-			else if(index < 24) {
-				arrayIndex12[index - 22] = index;
-			}
-			else if(index < 26) {
-				arrayIndex13[index - 24] = index;
-			}
-			else if(index < 28) {
-				arrayIndex14[index - 26] = index;
-			}
-			else if(index < 30) {
-				arrayIndex15[index - 28] = index;
-			}
-			else if(index < 32) {
-				arrayIndex16[index - 30] = index;
-			}
-			else if(index < 34) {
-				arrayIndex17[index - 32] = index;
-			}
-			else if(index < 36) {
-				arrayIndex18[index - 34] = index;
-			}
-			else if(index < 38) {
-				arrayIndex19[index - 36] = index;
-			}
-			else if(index < 40) {
-				arrayIndex20[index - 38] = index;
-			}
-			else if(index < 42) {
-				arrayIndex21[index - 40] = index;
-			}
-			else if(index < 44) {
-				arrayIndex22[index - 42] = index;
-			}
-			else if(index < 46) {
-				arrayIndex23[index - 44] = index;
-			}
-			else if(index < 48) {
-				arrayIndex24[index - 46] = index;
-			}
-			else if(index < 50) {
-				arrayIndex25[index - 48] = index;
-			}
-			else if(index < 52) {
-				arrayIndex26[index - 50] = index;
-			}
-			else if(index < 54) {
-				arrayIndex27[index - 52] = index;
-			}
-			else if(index < 56) {
-				arrayIndex28[index - 54] = index;
-			}
-			else if(index < 58) {
-				arrayIndex29[index - 56] = index;
-			}
-			else if(index < 60) {
-				arrayIndex30[index - 58] = index;
-			}
-			else if(index < 62) {
-				arrayIndex31[index - 60] = index;
-			}
-			else if(index < 64) {
-				arrayIndex32[index - 62] = index;
-			}
-			else if(index < 66) {
-				arrayIndex33[index - 64] = index;
-			}
-			else if(index < 68) {
-				arrayIndex34[index - 66] = index;
-			}
-			else if(index < 70) {
-				arrayIndex35[index - 68] = index;
-			}
-			else if(index < 72) {
-				arrayIndex36[index - 70] = index;
-			}
-			else if(index < 74) {
-				arrayIndex37[index - 72] = index;
-			}
-			else if(index < 76) {
-				arrayIndex38[index - 74] = index;
-			}
-			else if(index < 78) {
-				arrayIndex39[index - 76] = index;
-			}
-			else if(index < 80) {
-				arrayIndex40[index - 78] = index;
-			}
-			else if(index < 82) {
-				arrayIndex41[index - 80] = index;
-			}
-			else if(index < 84) {
-				arrayIndex42[index - 82] = index;
-			}
-			else if(index < 86) {
-				arrayIndex43[index - 84] = index;
-			}
-			else if(index < 88) {
-				arrayIndex44[index - 86] = index;
-			}
-			else if(index < 90) {
-				arrayIndex45[index - 88] = index;
-			}
-			else if(index < 92) {
-				arrayIndex46[index - 90] = index;
-			}
-			else if(index < 94) {
-				arrayIndex47[index - 92] = index;
-			}
-			else if(index < 96) {
-				arrayIndex48[index - 94] = index;
-			}
-			else if(index < 98) {
-				arrayIndex49[index - 96] = index;
-			}
-			else if(index < 100) {
-				arrayIndex50[index - 98] = index;
-			}
-		}
-		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4, arrayIndex5, arrayIndex6, arrayIndex7, arrayIndex8, arrayIndex9, arrayIndex10, 
-				arrayIndex11, arrayIndex12, arrayIndex13, arrayIndex14, arrayIndex15, arrayIndex16, arrayIndex17, arrayIndex18, arrayIndex19, arrayIndex20,
-				arrayIndex21, arrayIndex22, arrayIndex23, arrayIndex24, arrayIndex25, arrayIndex26, arrayIndex27, arrayIndex28, arrayIndex29, arrayIndex30,
-				arrayIndex31, arrayIndex32, arrayIndex33, arrayIndex34, arrayIndex35, arrayIndex36, arrayIndex37, arrayIndex38, arrayIndex39, arrayIndex40,
-				arrayIndex41, arrayIndex42, arrayIndex43, arrayIndex44, arrayIndex45, arrayIndex46, arrayIndex47, arrayIndex48, arrayIndex49, arrayIndex50};
+//		//50 arrays de 2
+//		Integer[] arrayIndex1 = new Integer[2];
+//		Integer[] arrayIndex2 = new Integer[2];
+//		Integer[] arrayIndex3 = new Integer[2];
+//		Integer[] arrayIndex4 = new Integer[2];
+//		Integer[] arrayIndex5 = new Integer[2];
+//		Integer[] arrayIndex6 = new Integer[2];
+//		Integer[] arrayIndex7 = new Integer[2];
+//		Integer[] arrayIndex8 = new Integer[2];
+//		Integer[] arrayIndex9 = new Integer[2];
+//		Integer[] arrayIndex10 = new Integer[2];
+//		Integer[] arrayIndex11 = new Integer[2];
+//		Integer[] arrayIndex12 = new Integer[2];
+//		Integer[] arrayIndex13 = new Integer[2];
+//		Integer[] arrayIndex14 = new Integer[2];
+//		Integer[] arrayIndex15 = new Integer[2];
+//		Integer[] arrayIndex16 = new Integer[2];
+//		Integer[] arrayIndex17 = new Integer[2];
+//		Integer[] arrayIndex18 = new Integer[2];
+//		Integer[] arrayIndex19 = new Integer[2];
+//		Integer[] arrayIndex20 = new Integer[2];
+//		Integer[] arrayIndex21 = new Integer[2];
+//		Integer[] arrayIndex22 = new Integer[2];
+//		Integer[] arrayIndex23 = new Integer[2];
+//		Integer[] arrayIndex24 = new Integer[2];
+//		Integer[] arrayIndex25 = new Integer[2];
+//		Integer[] arrayIndex26 = new Integer[2];
+//		Integer[] arrayIndex27 = new Integer[2];
+//		Integer[] arrayIndex28 = new Integer[2];
+//		Integer[] arrayIndex29 = new Integer[2];
+//		Integer[] arrayIndex30 = new Integer[2];
+//		Integer[] arrayIndex31 = new Integer[2];
+//		Integer[] arrayIndex32 = new Integer[2];
+//		Integer[] arrayIndex33 = new Integer[2];
+//		Integer[] arrayIndex34 = new Integer[2];
+//		Integer[] arrayIndex35 = new Integer[2];
+//		Integer[] arrayIndex36 = new Integer[2];
+//		Integer[] arrayIndex37 = new Integer[2];
+//		Integer[] arrayIndex38 = new Integer[2];
+//		Integer[] arrayIndex39 = new Integer[2];
+//		Integer[] arrayIndex40 = new Integer[2];
+//		Integer[] arrayIndex41 = new Integer[2];
+//		Integer[] arrayIndex42 = new Integer[2];
+//		Integer[] arrayIndex43 = new Integer[2];
+//		Integer[] arrayIndex44 = new Integer[2];
+//		Integer[] arrayIndex45 = new Integer[2];
+//		Integer[] arrayIndex46 = new Integer[2];
+//		Integer[] arrayIndex47 = new Integer[2];
+//		Integer[] arrayIndex48 = new Integer[2];
+//		Integer[] arrayIndex49 = new Integer[2];
+//		Integer[] arrayIndex50 = new Integer[2];
+//		for(int index = 0; index < 100; index++) {
+//			if(index < 2) {
+//				arrayIndex1[index] = index;
+//			}
+//			else if(index < 4) {
+//				arrayIndex2[index - 2] = index;
+//			}
+//			else if(index < 6) {
+//				arrayIndex3[index - 4] = index;
+//			}
+//			else if(index < 8) {
+//				arrayIndex4[index - 6] = index;
+//			}
+//			else if(index < 10) {
+//				arrayIndex5[index - 8] = index;
+//			}
+//			else if(index < 12) {
+//				arrayIndex6[index - 10] = index;
+//			}
+//			else if(index < 14) {
+//				arrayIndex7[index - 12] = index;
+//			}
+//			else if(index < 16) {
+//				arrayIndex8[index - 14] = index;
+//			}
+//			else if(index < 18) {
+//				arrayIndex9[index - 16] = index;
+//			}
+//			else if(index < 20) {
+//				arrayIndex10[index - 18] = index;
+//			}
+//			else if(index < 22) {
+//				arrayIndex11[index - 20] = index;
+//			}
+//			else if(index < 24) {
+//				arrayIndex12[index - 22] = index;
+//			}
+//			else if(index < 26) {
+//				arrayIndex13[index - 24] = index;
+//			}
+//			else if(index < 28) {
+//				arrayIndex14[index - 26] = index;
+//			}
+//			else if(index < 30) {
+//				arrayIndex15[index - 28] = index;
+//			}
+//			else if(index < 32) {
+//				arrayIndex16[index - 30] = index;
+//			}
+//			else if(index < 34) {
+//				arrayIndex17[index - 32] = index;
+//			}
+//			else if(index < 36) {
+//				arrayIndex18[index - 34] = index;
+//			}
+//			else if(index < 38) {
+//				arrayIndex19[index - 36] = index;
+//			}
+//			else if(index < 40) {
+//				arrayIndex20[index - 38] = index;
+//			}
+//			else if(index < 42) {
+//				arrayIndex21[index - 40] = index;
+//			}
+//			else if(index < 44) {
+//				arrayIndex22[index - 42] = index;
+//			}
+//			else if(index < 46) {
+//				arrayIndex23[index - 44] = index;
+//			}
+//			else if(index < 48) {
+//				arrayIndex24[index - 46] = index;
+//			}
+//			else if(index < 50) {
+//				arrayIndex25[index - 48] = index;
+//			}
+//			else if(index < 52) {
+//				arrayIndex26[index - 50] = index;
+//			}
+//			else if(index < 54) {
+//				arrayIndex27[index - 52] = index;
+//			}
+//			else if(index < 56) {
+//				arrayIndex28[index - 54] = index;
+//			}
+//			else if(index < 58) {
+//				arrayIndex29[index - 56] = index;
+//			}
+//			else if(index < 60) {
+//				arrayIndex30[index - 58] = index;
+//			}
+//			else if(index < 62) {
+//				arrayIndex31[index - 60] = index;
+//			}
+//			else if(index < 64) {
+//				arrayIndex32[index - 62] = index;
+//			}
+//			else if(index < 66) {
+//				arrayIndex33[index - 64] = index;
+//			}
+//			else if(index < 68) {
+//				arrayIndex34[index - 66] = index;
+//			}
+//			else if(index < 70) {
+//				arrayIndex35[index - 68] = index;
+//			}
+//			else if(index < 72) {
+//				arrayIndex36[index - 70] = index;
+//			}
+//			else if(index < 74) {
+//				arrayIndex37[index - 72] = index;
+//			}
+//			else if(index < 76) {
+//				arrayIndex38[index - 74] = index;
+//			}
+//			else if(index < 78) {
+//				arrayIndex39[index - 76] = index;
+//			}
+//			else if(index < 80) {
+//				arrayIndex40[index - 78] = index;
+//			}
+//			else if(index < 82) {
+//				arrayIndex41[index - 80] = index;
+//			}
+//			else if(index < 84) {
+//				arrayIndex42[index - 82] = index;
+//			}
+//			else if(index < 86) {
+//				arrayIndex43[index - 84] = index;
+//			}
+//			else if(index < 88) {
+//				arrayIndex44[index - 86] = index;
+//			}
+//			else if(index < 90) {
+//				arrayIndex45[index - 88] = index;
+//			}
+//			else if(index < 92) {
+//				arrayIndex46[index - 90] = index;
+//			}
+//			else if(index < 94) {
+//				arrayIndex47[index - 92] = index;
+//			}
+//			else if(index < 96) {
+//				arrayIndex48[index - 94] = index;
+//			}
+//			else if(index < 98) {
+//				arrayIndex49[index - 96] = index;
+//			}
+//			else if(index < 100) {
+//				arrayIndex50[index - 98] = index;
+//			}
+//		}
+//		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4, arrayIndex5, arrayIndex6, arrayIndex7, arrayIndex8, arrayIndex9, arrayIndex10, 
+//				arrayIndex11, arrayIndex12, arrayIndex13, arrayIndex14, arrayIndex15, arrayIndex16, arrayIndex17, arrayIndex18, arrayIndex19, arrayIndex20,
+//				arrayIndex21, arrayIndex22, arrayIndex23, arrayIndex24, arrayIndex25, arrayIndex26, arrayIndex27, arrayIndex28, arrayIndex29, arrayIndex30,
+//				arrayIndex31, arrayIndex32, arrayIndex33, arrayIndex34, arrayIndex35, arrayIndex36, arrayIndex37, arrayIndex38, arrayIndex39, arrayIndex40,
+//				arrayIndex41, arrayIndex42, arrayIndex43, arrayIndex44, arrayIndex45, arrayIndex46, arrayIndex47, arrayIndex48, arrayIndex49, arrayIndex50};
 		
+//		ArrayList<Integer> indexes = new ArrayList<Integer>();
+//		for(int combinationIndex : combinationIndexes) {
+//			for(int index : arrayIndexes[combinationIndex]) {
+//				indexes.add(index);
+//			}
+//		}
+//		this.indexes = indexes;
+
+		//100
 		ArrayList<Integer> indexes = new ArrayList<Integer>();
 		for(int combinationIndex : combinationIndexes) {
-			for(int index : arrayIndexes[combinationIndex]) {
-				indexes.add(index);
-			}
+			indexes.add(combinationIndex);
 		}
 		this.indexes = indexes;
 	}

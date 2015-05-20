@@ -1,13 +1,15 @@
 package com.romullogirardi.huntshark.model;
 
+import java.math.BigInteger;
+
 public abstract class CombinationsGenerator {
 	
 	//ATTRIBUTES
 	private Object[] elements;
 	private int k;
-	private int lowestIndex = -1;
-	private int highestIndex = -1;
-	private int combinationsCounter = 1;
+	private long lowestIndex = -1;
+	private long highestIndex = -1;
+	private long combinationsCounter = 1;
 	
 	//CONSTRUCTOR
 	public CombinationsGenerator(Object[] elements, int k) {
@@ -16,11 +18,11 @@ public abstract class CombinationsGenerator {
 	}
 	
 	//GETTERS AND SETTERS
-	public void setLowestIndex(int lowestIndex) {
+	public void setLowestIndex(long lowestIndex) {
 		this.lowestIndex = lowestIndex;
 	}
 
-	public void setHighestIndex(int highestIndex) {
+	public void setHighestIndex(long highestIndex) {
 		this.highestIndex = highestIndex;
 	}
 
@@ -92,22 +94,31 @@ public abstract class CombinationsGenerator {
 		}
 	}
 	
-	public long c(int n, int r){
+//	public long c(int n, int r){
+//	
+//		long nf=fact(n);
+//		long rf=fact(r);
+//		long nrf=fact(n-r);
+//		long npr=nf/nrf;
+//		long ncr=npr/rf;
+//		return ncr;
+//	}
+//	
+//	private long fact(int n) {
+//		
+//		if(n == 0)
+//			return 1;
+//		else
+//			return n * fact(n-1);
+//	}
 	
-		long nf=fact(n);
-		long rf=fact(r);
-		long nrf=fact(n-r);
-		long npr=nf/nrf;
-		long ncr=npr/rf;
-		return ncr;
-	}
-	
-	private long fact(int n) {
-		
-		if(n == 0)
-			return 1;
-		else
-			return n * fact(n-1);
+	public BigInteger c(final int N, final int K) {
+	    BigInteger ret = BigInteger.ONE;
+	    for (int k = 0; k < K; k++) {
+	        ret = ret.multiply(BigInteger.valueOf(N-k))
+	                 .divide(BigInteger.valueOf(k+1));
+	    }
+	    return ret;
 	}
 	
 	private boolean isLowerOrEqualToHighestLimit() {

@@ -19,9 +19,12 @@ public class ContestManager {
 //	//20 arrays de 5
 //	public static final int N = 20;
 //	public static final int K = 10;
-	//50 arrays de 2
-	public static final int N = 50;
-	public static final int K = 25;
+//	//50 arrays de 2
+//	public static final int N = 50;
+//	public static final int K = 25;
+	//100
+	public static final int N = 100;
+	public static final int K = 50;
 
 	//ATTRIBUTES
 	private Vector<Contest> contests = new Vector<>();
