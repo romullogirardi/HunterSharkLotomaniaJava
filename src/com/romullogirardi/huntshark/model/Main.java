@@ -33,7 +33,7 @@ public class Main {
 			if(numberOfIterations == BigInteger.ZERO) {
 				numberOfIterations = ContestManager.getInstance().getCombinationsGenerator().c(ContestManager.N, ContestManager.K).divide(BigInteger.valueOf(interval)).add(BigInteger.ONE);
 			}
-		} while (index <= numberOfIterations.longValue());
+		} while (numberOfIterations.subtract(BigInteger.valueOf(index)) != BigInteger.ONE.negate());
 	}
 	
 	public static void addToBestGameStrategies(ArrayList<GameStrategy> gameStrategies) {
