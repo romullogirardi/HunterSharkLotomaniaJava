@@ -1,7 +1,6 @@
 package com.romullogirardi.huntshark.model;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,11 +16,12 @@ public class Main {
 		//Realizar iterações de interval em interval
 		int interval = 1000;
 		int index = 1;
-		BigInteger numberOfIterations = BigInteger.ZERO;
+		long numberOfIterations = 0;
 		do {
-			if(numberOfIterations != BigInteger.ZERO) {
-				System.out.println("Computando iteração " + index + "/" + numberOfIterations + "...");
+			if(numberOfIterations != 0) {
+				System.out.println("Computando iteração " + index + "/" + numberOfIterations + ", de " + (index - 1) * interval + " a " + index * interval);
 			}
+			ContestManager.newInstance(); 
 			ContestManager.getInstance().initializeGameStrategiesByCombinationsGenerator((index - 1) * interval, index * interval);
 			ContestManager.getInstance().populateContests();
 			System.out.println("RANKING DE ESTRATÉGIAS APÓS A " + index + "ª ITERAÇÃO:");
@@ -30,10 +30,10 @@ public class Main {
 			}
 			System.out.println();
 			index++;
-			if(numberOfIterations == BigInteger.ZERO) {
-				numberOfIterations = ContestManager.getInstance().getCombinationsGenerator().c(ContestManager.N, ContestManager.K).divide(BigInteger.valueOf(interval)).add(BigInteger.ONE);
+			if(numberOfIterations == 0) {
+				numberOfIterations = (Math.abs(ContestManager.getInstance().getCombinationsGenerator().c(ContestManager.N, ContestManager.K) / interval)) + 1;
 			}
-		} while (numberOfIterations.subtract(BigInteger.valueOf(index)) != BigInteger.ONE.negate());
+		} while (index <= numberOfIterations);
 	}
 	
 	public static void addToBestGameStrategies(ArrayList<GameStrategy> gameStrategies) {

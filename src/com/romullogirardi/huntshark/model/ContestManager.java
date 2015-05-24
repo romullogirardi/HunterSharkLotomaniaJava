@@ -16,15 +16,15 @@ public class ContestManager {
 //	//10 arrays de 10
 //	public static final int N = 10;
 //	public static final int K = 5;
-//	//20 arrays de 5
-//	public static final int N = 20;
-//	public static final int K = 10;
+	//20 arrays de 5
+	public static final int N = 20;
+	public static final int K = 10;
 //	//50 arrays de 2
 //	public static final int N = 50;
 //	public static final int K = 25;
-	//100
-	public static final int N = 100;
-	public static final int K = 50;
+//	//100
+//	public static final int N = 100;
+//	public static final int K = 50;
 
 	//ATTRIBUTES
 	private Vector<Contest> contests = new Vector<>();
@@ -34,6 +34,10 @@ public class ContestManager {
 	
 	//IMPLEMENTING AS A SINGLETON
 	private static ContestManager instance = null;
+	
+	public static void newInstance() {
+		instance = null;
+	}
 	
 	public static ContestManager getInstance() {
 		if (instance == null) {
@@ -51,18 +55,18 @@ public class ContestManager {
 			numbersFrequency.add(new NumberFrequency(index, 0));
 		}
 
-//		//Initializing gameStrategies with CombinationsGenerator
-//		gameStrategies = new Vector<>();
-//		Integer[] elements = new Integer[N];
-//		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
-//		CombinationsGenerator myCombinationsGenerator = new CombinationsGenerator(elements, K) {
-//			
-//			@Override
-//			public void processCombination(Object[] elements, int[] combination) {
-//				gameStrategies.add(new GameStrategy(combination));
-//			}
-//		};
-//		myCombinationsGenerator.generateCombinations();
+		//Initializing gameStrategies with CombinationsGenerator
+		gameStrategies = new Vector<>();
+		Integer[] elements = new Integer[N];
+		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
+		CombinationsGenerator myCombinationsGenerator = new CombinationsGenerator(elements, K) {
+			
+			@Override
+			public void processCombination(Object[] elements, int[] combination) {
+				gameStrategies.add(new GameStrategy(combination));
+			}
+		};
+		myCombinationsGenerator.generateCombinations();
 	}
 	
 	//GETTERS AND SETTERS
@@ -272,7 +276,7 @@ public class ContestManager {
 //		for(int index = 0; index < contests.size() - 1; index++) {
 //			System.out.println(contests.get(index).toString());
 //		}
-//		
+		
 //		System.out.println("\nJogo anterior: ");
 //		if((contests.size() - 2) >= 0) {
 //			for(Game game : contests.get(contests.size() - 2).getRecommendedGames()) {

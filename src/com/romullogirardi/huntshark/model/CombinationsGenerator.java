@@ -65,7 +65,7 @@ public abstract class CombinationsGenerator {
 			if(r == this.k - 1){
 				//do something with the combination e.g. add to list or print
 				if(isHigherOrEqualToLowestLimit() && isLowerOrEqualToHighestLimit()) {
-//					System.out.println("Criando a " + combinationsCounter + "ª estratégia de jogo...");
+					System.out.println("Criando a " + combinationsCounter + "ª estratégia de jogo...");
 					processCombination(elements, combination);
 					combinationsCounter++;
 					index++;
@@ -94,31 +94,12 @@ public abstract class CombinationsGenerator {
 		}
 	}
 	
-//	public long c(int n, int r){
-//	
-//		long nf=fact(n);
-//		long rf=fact(r);
-//		long nrf=fact(n-r);
-//		long npr=nf/nrf;
-//		long ncr=npr/rf;
-//		return ncr;
-//	}
-//	
-//	private long fact(int n) {
-//		
-//		if(n == 0)
-//			return 1;
-//		else
-//			return n * fact(n-1);
-//	}
-	
-	public BigInteger c(final int N, final int K) {
+	public long c(final int N, final int K) {
 	    BigInteger ret = BigInteger.ONE;
 	    for (int k = 0; k < K; k++) {
-	        ret = ret.multiply(BigInteger.valueOf(N-k))
-	                 .divide(BigInteger.valueOf(k+1));
+	        ret = ret.multiply(BigInteger.valueOf(N-k)).divide(BigInteger.valueOf(k+1));
 	    }
-	    return ret;
+	    return ret.longValue();
 	}
 	
 	private boolean isLowerOrEqualToHighestLimit() {
