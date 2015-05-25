@@ -396,6 +396,10 @@ public class GameStrategy implements Comparable<GameStrategy> {
 //		this.indexes = indexes;
 	}
 	
+	public GameStrategy(ArrayList<Integer> indexes) {
+		this.indexes = indexes;
+	}
+	
 	//GETTERS AND SETTERS
 	public ArrayList<Integer> getIndexes() {
 		return indexes;

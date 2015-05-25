@@ -3,6 +3,7 @@ package com.romullogirardi.huntshark.model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Vector;
 
 public class Main {
 	
@@ -13,7 +14,7 @@ public class Main {
 		
 //		ContestManager.getInstance().populateContests();
 		
-		//Realizar iterações de interval em interval
+		//Executing iterations in intervals to discover the best 10 gameStrategies
 		int interval = 1000;
 		int index = 1;
 		long numberOfIterations = 0;
@@ -34,6 +35,26 @@ public class Main {
 				numberOfIterations = (Math.abs(ContestManager.getInstance().getCombinationsGenerator().c(ContestManager.N, ContestManager.K) / interval)) + 1;
 			}
 		} while (index <= numberOfIterations);
+		
+		//Analysing what is the best group of 4 gameStrategies in the top 10
+		Integer[] elements = new Integer[10];
+		for(int i = 1; i <= 10; i++) {
+			elements[i - 1] = i;
+		}
+		CombinationsGenerator mCombinationsGenerator = new CombinationsGenerator(elements, 4) {
+			
+			@Override
+			public void processCombination(Object[] elements, int[] combination) {
+				Vector<GameStrategy> gameStrategies = new Vector<>();
+				for(int index = 0; index < combination.length; index++) {
+					gameStrategies.add(new GameStrategy(bestGameStrategies.get(combination[index]).getIndexes()));
+				}
+				ContestManager.newInstance();
+				ContestManager.getInstance().setGameStrategies(gameStrategies);
+				ContestManager.getInstance().populateContests();
+				
+			}
+		};
 	}
 	
 	public static void addToBestGameStrategies(ArrayList<GameStrategy> gameStrategies) {

@@ -56,6 +56,7 @@ public class HTMLParser{
 
 	//ATTRIBUTES
 	private static Document htmlFile;
+	private static boolean isHtmlEnough = false;
 	
 	//METHODS
 	private static void parseHtmlFile() {
@@ -229,10 +230,15 @@ public class HTMLParser{
 			}
 			
 			//Adding a contest, if it´s valid
-			boolean isLastContest = (rowIndex == (tableRows.size() - 1)) ? true : false;
+			boolean isLastContest = ((rowIndex == (tableRows.size() - 1)) && isHtmlEnough) ? true : false;
 			if(id != -1) {
 				ContestManager.getInstance().computeLastContest(new Contest(id, date, place, numbers, reward20points, reward19points, reward18points, reward17points, reward16points, reward0points), isLastContest);
 			}
+		}
+		
+		//Reading additional contests, if necessary
+		if(!isHtmlEnough) {
+			readAdditionalContests();
 		}
 	}
 	
@@ -242,12 +248,10 @@ public class HTMLParser{
 		return floatStringFormat;
 	}
 	
-	public static void main(String args[]) { 
-		
-		//Parsing HTML file
-		parseHtmlFile();
-		
-		//Reading contests from HTML file
-		readContestsFromHTMLFile();
+	private static void readAdditionalContests() {
+		int[] numbers1 = {13, 27, 28, 30, 34, 39, 41, 47, 48, 51, 54, 57, 67, 74, 75, 83, 84, 93, 96, 99};
+		ContestManager.getInstance().computeLastContest(new Contest(1556, new GregorianCalendar(2015, 4, 20), "IPORÁ/GO", numbers1, (float) 0, (float) 19642.18, (float) 1976.57, (float) 135.18, (float) 23.25, (float) 0), false);
+		int[] numbers2 = {0, 2, 6, 8, 13, 17, 23, 29, 33, 36, 40, 42, 47, 49, 57, 67, 75, 80, 91, 95};
+		ContestManager.getInstance().computeLastContest(new Contest(1557, new GregorianCalendar(2015, 4, 23), "IPORÁ/GO", numbers2, (float) 0, (float) 20786.95 , (float) 1491.05 , (float) 116.18, (float) 20.44, (float) 176689.07 ), true);
 	}
 }
