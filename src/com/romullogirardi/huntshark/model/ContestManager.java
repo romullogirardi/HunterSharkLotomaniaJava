@@ -287,10 +287,10 @@ public class ContestManager {
 	public void print() {
 		
 		if(state.equals(State.FINAL)) {
-//			System.out.println("\nTodos os concursos:\n");
-//			for(int index = 0; index < contests.size() - 1; index++) {
-//				System.out.println(contests.get(index).toString());
-//			}
+			System.out.println("\nTodos os concursos:\n");
+			for(int index = 0; index < contests.size() - 1; index++) {
+				System.out.println(contests.get(index).toString());
+			}
 		
 			System.out.println("\nJogo anterior: ");
 			if((contests.size() - 2) >= 0) {
@@ -308,7 +308,7 @@ public class ContestManager {
 			}
 			
 			System.out.println("\nEstratégias(" + gameStrategies.size() + ")");
-			for(GameStrategy gameStrategy : getRecommendedStrategies(5 * Constants.GAMES_QUANTITY)) {
+			for(GameStrategy gameStrategy : getRecommendedStrategies(Constants.GAMES_QUANTITY)) {
 				System.out.println(gameStrategy.toString());
 			}
 	
