@@ -86,90 +86,90 @@ public class GameStrategy implements Comparable<GameStrategy> {
 //		}
 //		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4, arrayIndex5, arrayIndex6, arrayIndex7, arrayIndex8, arrayIndex9, arrayIndex10};
 
-//		//20 arrays de 5
-//		Integer[] arrayIndex1 = new Integer[5];
-//		Integer[] arrayIndex2 = new Integer[5];
-//		Integer[] arrayIndex3 = new Integer[5];
-//		Integer[] arrayIndex4 = new Integer[5];
-//		Integer[] arrayIndex5 = new Integer[5];
-//		Integer[] arrayIndex6 = new Integer[5];
-//		Integer[] arrayIndex7 = new Integer[5];
-//		Integer[] arrayIndex8 = new Integer[5];
-//		Integer[] arrayIndex9 = new Integer[5];
-//		Integer[] arrayIndex10 = new Integer[5];
-//		Integer[] arrayIndex11 = new Integer[5];
-//		Integer[] arrayIndex12 = new Integer[5];
-//		Integer[] arrayIndex13 = new Integer[5];
-//		Integer[] arrayIndex14 = new Integer[5];
-//		Integer[] arrayIndex15 = new Integer[5];
-//		Integer[] arrayIndex16 = new Integer[5];
-//		Integer[] arrayIndex17 = new Integer[5];
-//		Integer[] arrayIndex18 = new Integer[5];
-//		Integer[] arrayIndex19 = new Integer[5];
-//		Integer[] arrayIndex20 = new Integer[5];
-//		for(int index = 0; index < 100; index++) {
-//			if(index < 5) {
-//				arrayIndex1[index] = index;
-//			}
-//			else if(index < 10) {
-//				arrayIndex2[index - 5] = index;
-//			}
-//			else if(index < 15) {
-//				arrayIndex3[index - 10] = index;
-//			}
-//			else if(index < 20) {
-//				arrayIndex4[index - 15] = index;
-//			}
-//			else if(index < 25) {
-//				arrayIndex5[index - 20] = index;
-//			}
-//			else if(index < 30) {
-//				arrayIndex6[index - 25] = index;
-//			}
-//			else if(index < 35) {
-//				arrayIndex7[index - 30] = index;
-//			}
-//			else if(index < 40) {
-//				arrayIndex8[index - 35] = index;
-//			}
-//			else if(index < 45) {
-//				arrayIndex9[index - 40] = index;
-//			}
-//			else if(index < 50) {
-//				arrayIndex10[index - 45] = index;
-//			}
-//			else if(index < 55) {
-//				arrayIndex11[index - 50] = index;
-//			}
-//			else if(index < 60) {
-//				arrayIndex12[index - 55] = index;
-//			}
-//			else if(index < 65) {
-//				arrayIndex13[index - 60] = index;
-//			}
-//			else if(index < 70) {
-//				arrayIndex14[index - 65] = index;
-//			}
-//			else if(index < 75) {
-//				arrayIndex15[index - 70] = index;
-//			}
-//			else if(index < 80) {
-//				arrayIndex16[index - 75] = index;
-//			}
-//			else if(index < 85) {
-//				arrayIndex17[index - 80] = index;
-//			}
-//			else if(index < 90) {
-//				arrayIndex18[index - 85] = index;
-//			}
-//			else if(index < 95) {
-//				arrayIndex19[index - 90] = index;
-//			}
-//			else if(index < 100) {
-//				arrayIndex20[index - 95] = index;
-//			}
-//		}
-//		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4, arrayIndex5, arrayIndex6, arrayIndex7, arrayIndex8, arrayIndex9, arrayIndex10, arrayIndex11, arrayIndex12, arrayIndex13, arrayIndex14, arrayIndex15, arrayIndex16, arrayIndex17, arrayIndex18, arrayIndex19, arrayIndex20};
+		//20 arrays de 5
+		Integer[] arrayIndex1 = new Integer[5];
+		Integer[] arrayIndex2 = new Integer[5];
+		Integer[] arrayIndex3 = new Integer[5];
+		Integer[] arrayIndex4 = new Integer[5];
+		Integer[] arrayIndex5 = new Integer[5];
+		Integer[] arrayIndex6 = new Integer[5];
+		Integer[] arrayIndex7 = new Integer[5];
+		Integer[] arrayIndex8 = new Integer[5];
+		Integer[] arrayIndex9 = new Integer[5];
+		Integer[] arrayIndex10 = new Integer[5];
+		Integer[] arrayIndex11 = new Integer[5];
+		Integer[] arrayIndex12 = new Integer[5];
+		Integer[] arrayIndex13 = new Integer[5];
+		Integer[] arrayIndex14 = new Integer[5];
+		Integer[] arrayIndex15 = new Integer[5];
+		Integer[] arrayIndex16 = new Integer[5];
+		Integer[] arrayIndex17 = new Integer[5];
+		Integer[] arrayIndex18 = new Integer[5];
+		Integer[] arrayIndex19 = new Integer[5];
+		Integer[] arrayIndex20 = new Integer[5];
+		for(int index = 0; index < 100; index++) {
+			if(index < 5) {
+				arrayIndex1[index] = index;
+			}
+			else if(index < 10) {
+				arrayIndex2[index - 5] = index;
+			}
+			else if(index < 15) {
+				arrayIndex3[index - 10] = index;
+			}
+			else if(index < 20) {
+				arrayIndex4[index - 15] = index;
+			}
+			else if(index < 25) {
+				arrayIndex5[index - 20] = index;
+			}
+			else if(index < 30) {
+				arrayIndex6[index - 25] = index;
+			}
+			else if(index < 35) {
+				arrayIndex7[index - 30] = index;
+			}
+			else if(index < 40) {
+				arrayIndex8[index - 35] = index;
+			}
+			else if(index < 45) {
+				arrayIndex9[index - 40] = index;
+			}
+			else if(index < 50) {
+				arrayIndex10[index - 45] = index;
+			}
+			else if(index < 55) {
+				arrayIndex11[index - 50] = index;
+			}
+			else if(index < 60) {
+				arrayIndex12[index - 55] = index;
+			}
+			else if(index < 65) {
+				arrayIndex13[index - 60] = index;
+			}
+			else if(index < 70) {
+				arrayIndex14[index - 65] = index;
+			}
+			else if(index < 75) {
+				arrayIndex15[index - 70] = index;
+			}
+			else if(index < 80) {
+				arrayIndex16[index - 75] = index;
+			}
+			else if(index < 85) {
+				arrayIndex17[index - 80] = index;
+			}
+			else if(index < 90) {
+				arrayIndex18[index - 85] = index;
+			}
+			else if(index < 95) {
+				arrayIndex19[index - 90] = index;
+			}
+			else if(index < 100) {
+				arrayIndex20[index - 95] = index;
+			}
+		}
+		Integer[][] arrayIndexes = {arrayIndex1, arrayIndex2, arrayIndex3, arrayIndex4, arrayIndex5, arrayIndex6, arrayIndex7, arrayIndex8, arrayIndex9, arrayIndex10, arrayIndex11, arrayIndex12, arrayIndex13, arrayIndex14, arrayIndex15, arrayIndex16, arrayIndex17, arrayIndex18, arrayIndex19, arrayIndex20};
 
 //		//50 arrays de 2
 //		Integer[] arrayIndex1 = new Integer[2];
@@ -380,20 +380,20 @@ public class GameStrategy implements Comparable<GameStrategy> {
 //				arrayIndex31, arrayIndex32, arrayIndex33, arrayIndex34, arrayIndex35, arrayIndex36, arrayIndex37, arrayIndex38, arrayIndex39, arrayIndex40,
 //				arrayIndex41, arrayIndex42, arrayIndex43, arrayIndex44, arrayIndex45, arrayIndex46, arrayIndex47, arrayIndex48, arrayIndex49, arrayIndex50};
 		
-//		ArrayList<Integer> indexes = new ArrayList<Integer>();
-//		for(int combinationIndex : combinationIndexes) {
-//			for(int index : arrayIndexes[combinationIndex]) {
-//				indexes.add(index);
-//			}
-//		}
-//		this.indexes = indexes;
-
-//		//100
 		ArrayList<Integer> indexes = new ArrayList<Integer>();
 		for(int combinationIndex : combinationIndexes) {
-			indexes.add(combinationIndex);
+			for(int index : arrayIndexes[combinationIndex]) {
+				indexes.add(index);
+			}
 		}
 		this.indexes = indexes;
+
+//		//100
+//		ArrayList<Integer> indexes = new ArrayList<Integer>();
+//		for(int combinationIndex : combinationIndexes) {
+//			indexes.add(combinationIndex);
+//		}
+//		this.indexes = indexes;
 	}
 	
 	public GameStrategy(ArrayList<Integer> indexes) {

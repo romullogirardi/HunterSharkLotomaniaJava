@@ -31,12 +31,13 @@ public class ContestManager {
 	private Vector<NumberFrequency> numbersFrequency;
 	private Vector<GameStrategy> gameStrategies;
 	private CombinationsGenerator combinationsGenerator;
+	private boolean production = false;
 	
 	//ENUM
 	public enum State {
-		INICIAL, FINAL;
+		INDIRECT_ALL, DIRECT_ALL, INDIRECT_PART, DIRECT_PART;
 	}
-	private State state = State.INICIAL;
+	private State state = State.INDIRECT_ALL;
 	
 	//IMPLEMENTING AS A SINGLETON
 	private static ContestManager instance = null;
@@ -61,18 +62,18 @@ public class ContestManager {
 			numbersFrequency.add(new NumberFrequency(index, 0));
 		}
 
-//		//Initializing gameStrategies with CombinationsGenerator
-//		gameStrategies = new Vector<>();
-//		Integer[] elements = new Integer[N];
-//		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
-//		CombinationsGenerator myCombinationsGenerator = new CombinationsGenerator(elements, K) {
-//			
-//			@Override
-//			public void processCombination(Object[] elements, int[] combination) {
-//				gameStrategies.add(new GameStrategy(combination));
-//			}
-//		};
-//		myCombinationsGenerator.generateCombinations();
+		//Initializing gameStrategies with CombinationsGenerator
+		gameStrategies = new Vector<>();
+		Integer[] elements = new Integer[N];
+		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
+		CombinationsGenerator myCombinationsGenerator = new CombinationsGenerator(elements, K) {
+			
+			@Override
+			public void processCombination(Object[] elements, int[] combination) {
+				gameStrategies.add(new GameStrategy(combination));
+			}
+		};
+		myCombinationsGenerator.generateCombinations();
 	}
 	
 	//GETTERS AND SETTERS
@@ -88,24 +89,28 @@ public class ContestManager {
 		this.gameStrategies = gameStrategies;
 	}
 
-	//METHODS
-	public void initializeGameStrategiesByCombinationsGenerator(int lowestIndex, int highestIndex) {
-
-		//Initializing gameStrategies with CombinationsGenerator
-		gameStrategies = new Vector<>();
-		Integer[] elements = new Integer[N];
-		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
-		combinationsGenerator = new CombinationsGenerator(elements, K) {
-			
-			@Override
-			public void processCombination(Object[] elements, int[] combination) {
-				gameStrategies.add(new GameStrategy(combination));
-			}
-		};
-		if(lowestIndex != -1) combinationsGenerator.setLowestIndex(lowestIndex);
-		if(highestIndex != -1) combinationsGenerator.setHighestIndex(highestIndex);
-		combinationsGenerator.generateCombinations();
+	public void setProduction(boolean production) {
+		this.production = production;
 	}
+
+	//METHODS
+//	public void initializeGameStrategiesByCombinationsGenerator(int lowestIndex, int highestIndex) {
+//
+//		//Initializing gameStrategies with CombinationsGenerator
+//		gameStrategies = new Vector<>();
+//		Integer[] elements = new Integer[N];
+//		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
+//		combinationsGenerator = new CombinationsGenerator(elements, K) {
+//			
+//			@Override
+//			public void processCombination(Object[] elements, int[] combination) {
+//				gameStrategies.add(new GameStrategy(combination));
+//			}
+//		};
+//		if(lowestIndex != -1) combinationsGenerator.setLowestIndex(lowestIndex);
+//		if(highestIndex != -1) combinationsGenerator.setHighestIndex(highestIndex);
+//		combinationsGenerator.generateCombinations();
+//	}
 	
 	public void computeLastContest(Contest lastContestResult, boolean print) {
 		
@@ -173,7 +178,7 @@ public class ContestManager {
 					default:
 						break;
 				}
-				if(state.equals(State.FINAL)) {
+				if(production) {
 					System.out.println("Concurso " + lastContestResult.getId() + ": Marquei " + numberOfPoints + " pontos e ganhei R$ " + String.format("%.2f", (float) game.getReward()));
 				}
 			}
@@ -203,15 +208,23 @@ public class ContestManager {
 	}
 	
 	private void updateControllers(Contest lastContestResult) {
-		
-		//Updating numbersFrequency and getting selected indexes
+
 		ArrayList<Integer> indexes = new ArrayList<>();
-		for(int number : lastContestResult.getNumbers()) {
-			for(NumberFrequency numberFrequency : numbersFrequency) {
-				if(numberFrequency.getNumber() == number) {
-					indexes.add(numbersFrequency.indexOf(numberFrequency));
-					numberFrequency.setFrequency(numberFrequency.getFrequency() + 1);
+		if(state.equals(State.INDIRECT_ALL) || state.equals(State.INDIRECT_PART)) {
+			//Updating numbersFrequency and getting selected indexes
+			for(int number : lastContestResult.getNumbers()) {
+				for(NumberFrequency numberFrequency : numbersFrequency) {
+					if(numberFrequency.getNumber() == number) {
+						indexes.add(numbersFrequency.indexOf(numberFrequency));
+						numberFrequency.setFrequency(numberFrequency.getFrequency() + 1);
+					}
 				}
+			}
+		}
+		else {
+			//Getting selected numbers
+			for(int number : lastContestResult.getNumbers()) {
+				indexes.add(number);
 			}
 		}
 		
@@ -286,11 +299,11 @@ public class ContestManager {
 
 	public void print() {
 		
-		if(state.equals(State.FINAL)) {
-			System.out.println("\nTodos os concursos:\n");
-			for(int index = 0; index < contests.size() - 1; index++) {
-				System.out.println(contests.get(index).toString());
-			}
+		if(production) {
+//			System.out.println("\nTodos os concursos:\n");
+//			for(int index = 0; index < contests.size() - 1; index++) {
+//				System.out.println(contests.get(index).toString());
+//			}
 		
 			System.out.println("\nJogo anterior: ");
 			if((contests.size() - 2) >= 0) {
