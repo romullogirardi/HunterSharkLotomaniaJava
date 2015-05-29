@@ -232,7 +232,7 @@ public class HTMLParser{
 			//Adding a contest, if it´s valid
 			boolean isLastContest = ((rowIndex == (tableRows.size() - 1)) && isHtmlEnough) ? true : false;
 			if(id != -1) {
-				ContestManager.getInstance().computeLastContest(new Contest(id, date, place, numbers, reward20points, reward19points, reward18points, reward17points, reward16points, reward0points), isLastContest);
+				ContestManager.getInstance().computeLastContest(new Contest(id, date, place, numbers, reward20points, reward19points, reward18points, reward17points, reward16points, reward0points, false), isLastContest);
 			}
 		}
 		
@@ -250,10 +250,10 @@ public class HTMLParser{
 	
 	private static void readAdditionalContests() {
 		int[] numbers1 = {13, 27, 28, 30, 34, 39, 41, 47, 48, 51, 54, 57, 67, 74, 75, 83, 84, 93, 96, 99};
-		ContestManager.getInstance().computeLastContest(new Contest(1556, new GregorianCalendar(2015, 4, 20), "IPORÁ/GO", numbers1, (float) 0, (float) 19642.18, (float) 1976.57, (float) 135.18, (float) 23.25, (float) 0), false);
+		ContestManager.getInstance().computeLastContest(new Contest(1556, new GregorianCalendar(2015, 4, 20), "IPORÁ/GO", numbers1, (float) 0, (float) 19642.18, (float) 1976.57, (float) 135.18, (float) 23.25, (float) 0, false), false);
 		int[] numbers2 = {0, 2, 6, 8, 13, 17, 23, 29, 33, 36, 40, 42, 47, 49, 57, 67, 75, 80, 91, 95};
-		ContestManager.getInstance().computeLastContest(new Contest(1557, new GregorianCalendar(2015, 4, 23), "IPORÁ/GO", numbers2, (float) 0, (float) 20786.95 , (float) 1491.05 , (float) 116.18, (float) 20.44, (float) 176689.07 ), false);
+		ContestManager.getInstance().computeLastContest(new Contest(1557, new GregorianCalendar(2015, 4, 23), "IPORÁ/GO", numbers2, (float) 0, (float) 20786.95 , (float) 1491.05 , (float) 116.18, (float) 20.44, (float) 176689.07, false), false);
 		int[] numbers3 = {4, 14, 15, 21, 25, 28, 29, 31, 49, 53, 55, 56, 62, 67, 70, 71, 80, 83, 85, 92};
-		ContestManager.getInstance().computeLastContest(new Contest(1558, new GregorianCalendar(2015, 4, 27), "JAPERI/RJ", numbers3, (float) 0, (float) 54753.28 , (float) 2566.56 , (float) 182.67, (float) 28.95, (float) 164259.86 ), true);
+		ContestManager.getInstance().computeLastContest(new Contest(1558, new GregorianCalendar(2015, 4, 27), "JAPERI/RJ", numbers3, (float) 0, (float) 54753.28 , (float) 2566.56 , (float) 182.67, (float) 28.95, (float) 164259.86, true), true);
 	}
 }

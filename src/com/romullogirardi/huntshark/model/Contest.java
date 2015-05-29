@@ -22,11 +22,13 @@ public class Contest {
 	private float recommendedInvestment = 0;
 	private float recommendedReward = 0;
 	private boolean bet = false;
+	private float betInvestment = 0;
+	private float betReward = 0;
 	
 	//CONSTRUCTORS
 	public Contest(int id, Calendar date, String place, int[] numbers,
 			float reward20points, float reward19points, float reward18points,
-			float reward17points, float reward16points, float reward0points) {
+			float reward17points, float reward16points, float reward0points, boolean bet) {
 		this.id = id;
 		this.date = date;
 		this.place = place;
@@ -37,6 +39,7 @@ public class Contest {
 		this.reward17points = reward17points;
 		this.reward16points = reward16points;
 		this.reward0points = reward0points;
+		this.bet = bet;
 	}
 
 	public Contest(ArrayList<Game> recommendedGames) {
@@ -154,6 +157,22 @@ public class Contest {
 
 	public void setBet(boolean bet) {
 		this.bet = bet;
+	}
+
+	public float getBetInvestment() {
+		return betInvestment;
+	}
+
+	public void setBetInvestment(float betInvestment) {
+		this.betInvestment = betInvestment;
+	}
+
+	public float getBetReward() {
+		return betReward;
+	}
+
+	public void setBetReward(float betReward) {
+		this.betReward = betReward;
 	}
 
 	//OTHER METHODS

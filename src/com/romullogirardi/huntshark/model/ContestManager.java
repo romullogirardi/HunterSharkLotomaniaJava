@@ -31,13 +31,14 @@ public class ContestManager {
 	private Vector<NumberFrequency> numbersFrequency;
 	private Vector<GameStrategy> gameStrategies;
 	private CombinationsGenerator combinationsGenerator;
+	private int contestsPartition = -1;
 	private boolean production = false;
 	
 	//ENUM
 	public enum State {
-		INDIRECT_ALL, DIRECT_ALL, INDIRECT_PART, DIRECT_PART;
+		ALL, PART;
 	}
-	private State state = State.INDIRECT_ALL;
+	private State state = State.ALL;
 	
 	//IMPLEMENTING AS A SINGLETON
 	private static ContestManager instance = null;
@@ -81,6 +82,10 @@ public class ContestManager {
 		return combinationsGenerator;
 	}
 
+	public void setContestsPartition(int contestsPartition) {
+		this.contestsPartition = contestsPartition;
+	}
+
 	public void setState(State state) {
 		this.state = state;
 	}
@@ -94,23 +99,23 @@ public class ContestManager {
 	}
 
 	//METHODS
-//	public void initializeGameStrategiesByCombinationsGenerator(int lowestIndex, int highestIndex) {
-//
-//		//Initializing gameStrategies with CombinationsGenerator
-//		gameStrategies = new Vector<>();
-//		Integer[] elements = new Integer[N];
-//		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
-//		combinationsGenerator = new CombinationsGenerator(elements, K) {
-//			
-//			@Override
-//			public void processCombination(Object[] elements, int[] combination) {
-//				gameStrategies.add(new GameStrategy(combination));
-//			}
-//		};
-//		if(lowestIndex != -1) combinationsGenerator.setLowestIndex(lowestIndex);
-//		if(highestIndex != -1) combinationsGenerator.setHighestIndex(highestIndex);
-//		combinationsGenerator.generateCombinations();
-//	}
+	public void initializeGameStrategiesByCombinationsGenerator(int lowestIndex, int highestIndex) {
+
+		//Initializing gameStrategies with CombinationsGenerator
+		gameStrategies = new Vector<>();
+		Integer[] elements = new Integer[N];
+		for(int index = 1; index <= N; index++) elements[index - 1] = index; 
+		combinationsGenerator = new CombinationsGenerator(elements, K) {
+			
+			@Override
+			public void processCombination(Object[] elements, int[] combination) {
+				gameStrategies.add(new GameStrategy(combination));
+			}
+		};
+		if(lowestIndex != -1) combinationsGenerator.setLowestIndex(lowestIndex);
+		if(highestIndex != -1) combinationsGenerator.setHighestIndex(highestIndex);
+		combinationsGenerator.generateCombinations();
+	}
 	
 	public void computeLastContest(Contest lastContestResult, boolean print) {
 		
@@ -140,8 +145,10 @@ public class ContestManager {
 	
 	private void checkLastGames(Contest lastContestResult) {
 
-		float totalInvestment = 0;
-		float totalReward = 0;
+		float totalRecommendedInvestment = 0;
+		float totalRecommendedReward = 0;
+		float totalBetInvestment = 0;
+		float totalBetReward = 0;
 		
 		//Calculating the number of points, investment and reward of the last recommended games
 		for(Game game: contests.lastElement().getRecommendedGames()) {
@@ -184,13 +191,19 @@ public class ContestManager {
 			}
 			
 			//Increasing total investment and reward
-			totalInvestment += game.getInvestment();
-			totalReward += game.getReward();
+			totalRecommendedInvestment += game.getInvestment();
+			totalRecommendedReward += game.getReward();
+			if(contests.lastElement().isBet()) {
+				totalBetInvestment += game.getInvestment();
+				totalBetReward += game.getReward();
+			}
 		}
 		
 		//Setting total investment and reward
-		contests.lastElement().setRecommendedInvestment(totalInvestment);
-		contests.lastElement().setRecommendedReward(totalReward);
+		contests.lastElement().setRecommendedInvestment(totalRecommendedInvestment);
+		contests.lastElement().setRecommendedReward(totalRecommendedReward);
+		contests.lastElement().setBetInvestment(totalBetInvestment);
+		contests.lastElement().setBetReward(totalBetReward);
 	}
 	
 	private void updateLastContest(Contest lastContestResult) {
@@ -205,26 +218,19 @@ public class ContestManager {
 		contests.lastElement().setReward17points(lastContestResult.getReward17points());
 		contests.lastElement().setReward16points(lastContestResult.getReward16points());
 		contests.lastElement().setReward0points(lastContestResult.getReward0points());
+		contests.lastElement().setBet(lastContestResult.isBet());
 	}
 	
 	private void updateControllers(Contest lastContestResult) {
 
+		//Updating numbersFrequency and getting selected indexes
 		ArrayList<Integer> indexes = new ArrayList<>();
-		if(state.equals(State.INDIRECT_ALL) || state.equals(State.INDIRECT_PART)) {
-			//Updating numbersFrequency and getting selected indexes
-			for(int number : lastContestResult.getNumbers()) {
-				for(NumberFrequency numberFrequency : numbersFrequency) {
-					if(numberFrequency.getNumber() == number) {
-						indexes.add(numbersFrequency.indexOf(numberFrequency));
-						numberFrequency.setFrequency(numberFrequency.getFrequency() + 1);
-					}
+		for(int number : lastContestResult.getNumbers()) {
+			for(NumberFrequency numberFrequency : numbersFrequency) {
+				if(numberFrequency.getNumber() == number) {
+					indexes.add(numbersFrequency.indexOf(numberFrequency));
+					numberFrequency.setFrequency(numberFrequency.getFrequency() + 1);
 				}
-			}
-		}
-		else {
-			//Getting selected numbers
-			for(int number : lastContestResult.getNumbers()) {
-				indexes.add(number);
 			}
 		}
 		
@@ -274,7 +280,17 @@ public class ContestManager {
 		}
 		Collections.sort(gameStrategies);
 		
-		//Sorting numbersFrequency
+		//Updating and sorting numbersFrequency
+		if(contestsPartition != -1 && contestsPartition < contests.size()) {
+			int[] numbersToBeDiscounted = contests.get(contests.size() - contestsPartition - 1).getNumbers();
+			for(int number : numbersToBeDiscounted) {
+				for(NumberFrequency numberFrequency : numbersFrequency) {
+					if(numberFrequency.getNumber() == number) {
+						numberFrequency.setFrequency(numberFrequency.getFrequency() - 1);
+					}
+				}
+			}
+		}
 		Collections.sort(numbersFrequency);
 	}
 	
@@ -300,10 +316,10 @@ public class ContestManager {
 	public void print() {
 		
 		if(production) {
-//			System.out.println("\nTodos os concursos:\n");
-//			for(int index = 0; index < contests.size() - 1; index++) {
-//				System.out.println(contests.get(index).toString());
-//			}
+			System.out.println("\nTodos os concursos:\n");
+			for(int index = 0; index < contests.size() - 1; index++) {
+				System.out.println(contests.get(index).toString());
+			}
 		
 			System.out.println("\nJogo anterior: ");
 			if((contests.size() - 2) >= 0) {
@@ -325,15 +341,22 @@ public class ContestManager {
 				System.out.println(gameStrategy.toString());
 			}
 	
-			float totalInvestment = 0;
-			float totalReward = 0;
+			float totalRecommendedInvestment = 0;
+			float totalRecommendedReward = 0;
+			float totalBetInvestment = 0;
+			float totalBetReward = 0;
 			for(Contest contest : contests) {
-				totalInvestment += contest.getRecommendedInvestment();
-				totalReward += contest.getRecommendedReward();
+				totalRecommendedInvestment += contest.getRecommendedInvestment();
+				totalRecommendedReward += contest.getRecommendedReward();
+				totalBetInvestment += contest.getBetInvestment();
+				totalBetReward += contest.getBetReward();
 			}
-			System.out.println("\nInvestimento total: R$ " + String.format("%.2f", (float) totalInvestment));
-			System.out.println("Recompensa total: R$ " + String.format("%.2f", (float) totalReward));
-			System.out.println("Lucro total: R$ " + String.format("%.2f", (float) (totalReward - totalInvestment)));
+			System.out.println("\nInvestimento recomendado: R$ " + String.format("%.2f", (float) totalRecommendedInvestment));
+			System.out.println("Recompensa recomendada: R$ " + String.format("%.2f", (float) totalRecommendedReward));
+			System.out.println("Lucro recomendado: R$ " + String.format("%.2f", (float) (totalRecommendedReward - totalRecommendedInvestment)));
+			System.out.println("Investimento apostado: R$ " + String.format("%.2f", (float) totalBetInvestment));
+			System.out.println("Recompensa apostada: R$ " + String.format("%.2f", (float) totalBetReward));
+			System.out.println("Lucro apostado: R$ " + String.format("%.2f", (float) (totalBetReward - totalBetInvestment)));
 			DateFormat mDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			System.out.println("Período avaliado: " + mDateFormat.format(contests.firstElement().getDate().getTime()) + " - " + mDateFormat.format(contests.get(contests.size() - 2).getDate().getTime()));
 			
