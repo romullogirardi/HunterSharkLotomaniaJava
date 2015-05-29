@@ -23,14 +23,14 @@ public class Main {
 		System.out.println();
 
 		//Computing best results to combinations considering a part of past contests
-		for(int index = 10; index <= 100; index += 10) {
+		for(int index = 10; index <= 400; index += 10) {
 			System.out.println("Computando combinações considerando os " + index + " concursos passados...");
 			bestGameStrategies = new ArrayList<>();
 			ContestManager.newInstance();
 			ContestManager.getInstance().setState(State.PART);
 			ContestManager.getInstance().setContestsPartition(index);
 			ContestManager.getInstance().populateContests();
-			System.out.println("RANKING DAS COMBINAÇÕES DIRETAS CONSIDERANDO TODOS OS CONCURSOS PASSADOS:");
+			System.out.println("RANKING DAS COMBINAÇÕES DIRETAS CONSIDERANDO OS " + index + " CONCURSOS PASSADOS:");
 			for(GameStrategy gameStrategy : bestGameStrategies) 
 				System.out.println(gameStrategy.toString());
 			System.out.println();
