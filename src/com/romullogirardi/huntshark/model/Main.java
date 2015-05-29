@@ -3,13 +3,14 @@ package com.romullogirardi.huntshark.model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 
 import com.romullogirardi.huntshark.model.ContestManager.State;
 
 public class Main {
 	
 	//Collection which stores the 10 best GameStrategies
-	public static ArrayList<GameStrategy> bestGameStrategies;
+	private static ArrayList<GameStrategy> bestGameStrategies;
 	
 	public static void main(String[] args) throws IOException {
 
@@ -23,7 +24,11 @@ public class Main {
 		System.out.println();
 
 		//Computing best results to combinations considering a part of past contests
-		for(int index = 10; index <= 400; index += 10) {
+		int increment = 10;
+		for(int index = 10; index <= 1000; index += increment) {
+			if(index >= 100) {
+				increment = 100;
+			}
 			System.out.println("Computando combinações considerando os " + index + " concursos passados...");
 			bestGameStrategies = new ArrayList<>();
 			ContestManager.newInstance();
