@@ -47,12 +47,12 @@ public class HTMLParser{
 	private static final int CONTEST_REWARD_16_POINTS_INDEX = 35;	
 	private static final int CONTEST_REWARD_0_POINTS_INDEX = 36;
 	
-	private static final float DEFAULT_REWARD_20_POINTS = 1000000;
-	private static final float DEFAULT_REWARD_19_POINTS = 100000;
-	private static final float DEFAULT_REWARD_18_POINTS = 10000;
-	private static final float DEFAULT_REWARD_17_POINTS = 1000;
-	private static final float DEFAULT_REWARD_16_POINTS = 100;
-	private static final float DEFAULT_REWARD_0_POINTS = 1000000;
+	public static final float DEFAULT_REWARD_20_POINTS = 1000000;
+	public static final float DEFAULT_REWARD_19_POINTS = 30000;
+	public static final float DEFAULT_REWARD_18_POINTS = 2000;
+	public static final float DEFAULT_REWARD_17_POINTS = 150;
+	public static final float DEFAULT_REWARD_16_POINTS = 25;
+	public static final float DEFAULT_REWARD_0_POINTS = 100000;
 
 	//ATTRIBUTES
 	private static Document htmlFile;

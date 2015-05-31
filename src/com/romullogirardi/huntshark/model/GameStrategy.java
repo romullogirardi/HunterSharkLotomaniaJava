@@ -475,7 +475,7 @@ public class GameStrategy implements Comparable<GameStrategy> {
 
 	//OTHER METHODS
 	public float getScore() {
-		return (float) (6 * frequency20points + 4 * frequency19points + 3 * frequency18points + 2 * frequency17points + 1 * frequency16points + 6 * frequency0points) / 22;
+		return (float) ((HTMLParser.DEFAULT_REWARD_20_POINTS * frequency20points + HTMLParser.DEFAULT_REWARD_19_POINTS * frequency19points + HTMLParser.DEFAULT_REWARD_18_POINTS * frequency18points + HTMLParser.DEFAULT_REWARD_17_POINTS * frequency17points + HTMLParser.DEFAULT_REWARD_16_POINTS * frequency16points + HTMLParser.DEFAULT_REWARD_0_POINTS * frequency0points) / (HTMLParser.DEFAULT_REWARD_20_POINTS + HTMLParser.DEFAULT_REWARD_19_POINTS + HTMLParser.DEFAULT_REWARD_18_POINTS + HTMLParser.DEFAULT_REWARD_17_POINTS + HTMLParser.DEFAULT_REWARD_16_POINTS + HTMLParser.DEFAULT_REWARD_0_POINTS));
 	}
 	
 	public String toString() {
@@ -493,13 +493,13 @@ public class GameStrategy implements Comparable<GameStrategy> {
 
 	@Override
 	public int compareTo(GameStrategy otherGameStrategy) {
-//		if(getScore() > otherGameStrategy.getScore()) {
-//			return -1;
-//		}
-//		else if(getScore() < otherGameStrategy.getScore()) {
-//			return 1;
-//		}
-//		else {
+		if(getScore() > otherGameStrategy.getScore()) {
+			return -1;
+		}
+		else if(getScore() < otherGameStrategy.getScore()) {
+			return 1;
+		}
+		else {
 			if(reward > otherGameStrategy.getReward()) {
 				return -1;
 			}
@@ -517,6 +517,6 @@ public class GameStrategy implements Comparable<GameStrategy> {
 					return 0;
 				}
 			}
-//		}
+		}
 	}
 }

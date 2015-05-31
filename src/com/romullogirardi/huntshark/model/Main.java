@@ -3,7 +3,6 @@ package com.romullogirardi.huntshark.model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
 
 import com.romullogirardi.huntshark.model.ContestManager.State;
 
@@ -74,7 +73,8 @@ public class Main {
 //		gameStrategies.add(new GameStrategy(indexes3));
 //		gameStrategies.add(new GameStrategy(indexes4));
 //		ContestManager.getInstance().setGameStrategies(gameStrategies);
-//		ContestManager.getInstance().setState(State.FINAL);
+//		ContestManager.getInstance().setState(State.ALL);
+//		ContestManager.getInstance().setProduction(true);
 //		ContestManager.getInstance().populateContests();
 	}
 	
